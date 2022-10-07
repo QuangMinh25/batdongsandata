@@ -65,7 +65,7 @@ router.get('/view-all-bds', function viewAllBds(req, res, next) {
         for (var i = 0; i < docs.length; i++) {
             bdsChunks.push(docs[i]);
         }
-        res.render('Admin/viewAllBds', {
+        res.render('Admin/viewAllbds', {
             title: 'Tất cả dự án',
             csrfToken: req.csrfToken(),
             bdss: bdsChunks,
