@@ -17,7 +17,7 @@ var http = require('http');
 // var port = normalizePort(process.env.PORT || '3000');
 // app.set('port', port);
 
-const port = process.env.APP_PORT || 3000;
+const port = process.env.APP_PORT || 5000;
 
 
 /**
