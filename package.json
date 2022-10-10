@@ -2,6 +2,9 @@
   "name": "hrms",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "nodemon --inspect ./bin/www",
     "start": "node ./bin/www"
