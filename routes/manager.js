@@ -69,8 +69,6 @@ router.get('/view-all-bds', function viewAllBds(req, res, next) {
             userName: req.session.user.name
         });
     });
-
-   
 });
 router.get('/add-bds', function addBds(req, res, next) {
     var messages = req.flash('error');
