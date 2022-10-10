@@ -73,8 +73,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //validator should be ater body parser
 app.use(expressValidator());
 app.use(cookieParser());
-app.use('/public', express.static('public'));
-//app.use(express.static(path.join(__dirname, 'public')));
+//app.use('/public', express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'mysupersecret', resave: false, saveUninitialized: false, store: new MongoStore({
     mongooseConnection: mongoose.connection
