@@ -62,9 +62,12 @@ var app = express();
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
 
+app.set('view engine', 'ejs');
+app.set('views', './views');
+//app.use('/public', express.static('public'));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -73,7 +76,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //validator should be ater body parser
 app.use(expressValidator());
 app.use(cookieParser());
-//app.use('/public', express.static('public'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'mysupersecret', resave: false, saveUninitialized: false, store: new MongoStore({
