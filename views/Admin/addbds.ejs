@@ -97,7 +97,7 @@
                     <h1>Thêm dự án</h1>
                     <div id="menu2" style=" height:717px ;overflow: auto;">
 
-                        <form class="form-group-sm" action="/admin/add-bds" method="post">
+                        <form class="form-group-sm" action="/admin/add-bds" enctype="multipart/form-data" method="post">
                             <div class="form-group">
                                 <label for="gia">Giá:</label>
                                 <input type="text" required="required" class="form-control" id="gia" name="gia">
@@ -173,8 +173,8 @@
                                 <label for="lienhe">Liên hệ:</label>
                                 <input type="text" required="required" class="form-control" id="lienhe" name="lienhe">
                             </div>
-
-                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <input type="file" name="multiple_image" accept='image/*' multiple>
+                            
                             <button type="button" onclick="history.go(-1);" class="btn btn-default">Trở lại</button>
                             <button type="submit" class="btn btn-default">Thêm</button>
                         </form>
@@ -269,7 +269,7 @@
                     <p>Are you sure you want to mark attendance.</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    
                     <button type="reset" class="btn btn-default" data-dismiss="modal">No</button>
                     <button type="submit" class="btn btn-default">Yes</button>
                 </div>
@@ -313,7 +313,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                   
                     <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-default">View</button>
                 </div>

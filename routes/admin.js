@@ -2,16 +2,23 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
-var Bds = require('../models/bds');
+const Bds = require('../models/bds');
 var Project = require('../models/project');
 var flash = require('connect-flash');
-var csrf = require('csurf');
-var csrfProtection = csrf();
+// var //csrfToken: req.csrfToken(), = require('csurf');
+// var //csrfToken: req.csrfToken(),Protection = //csrfToken: req.csrfToken(),();
 var config_passport = require('../config/passport.js');
 var moment = require('moment');
 var Leave = require('../models/leave');
 var Attendance = require('../models/attendance');
-
+////////
+var multer = require("multer");
+var _ = require("underscore");
+var fs = require("fs");
+var upload = require("../helper/helper").upload;
+var vm = require("v-response");
+const user_controller = require("./user.controller");
+///////
 router.use('/', isLoggedIn, function isAuthenticated(req, res, next) {
     next();
 });
@@ -19,7 +26,7 @@ router.use('/', isLoggedIn, function isAuthenticated(req, res, next) {
 router.get('/', function viewHome(req, res, next) {
     res.render('Admin/adminHome', {
         title: 'Admin Home',
-        csrfToken: req.csrfToken(),
+        // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
         userName: req.session.user.name
     });
 });
@@ -32,7 +39,7 @@ router.get('/view-profile', function viewProfile(req, res, next) {
         }
         res.render('Admin/viewProfile', {
             title: 'Profile',
-            csrfToken: req.csrfToken(),
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             employee: user,
             moment: moment,
             userName: req.session.user.name
@@ -51,13 +58,32 @@ router.get('/view-all-employees', function viewAllEmployees(req, res, next) {
         }
         res.render('Admin/viewAllEmployee', {
             title: 'All Employees',
-            csrfToken: req.csrfToken(),
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             users: userChunks,
             userName: req.session.user.name
         });
     });
 });
 //////////////////
+let storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        console.log("file", file);
+        callback(null, "./Uploads/");
+    },
+    filename: function (req, file, callback) {
+        // console.log("multer file:", file);
+        callback(null, file.originalname);
+    }
+});
+let maxSize = 1000000 * 1000;
+var upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: maxSize
+    }
+});
+
+////////////////
 router.get('/view-all-bds', function viewAllBds(req, res, next) {
     var bdsChunks = [];
     //find is asynchronous function
@@ -67,7 +93,7 @@ router.get('/view-all-bds', function viewAllBds(req, res, next) {
         }
         res.render('Admin/viewAllbds', {
             title: 'Tất cả dự án',
-            csrfToken: req.csrfToken(),
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             bdss: bdsChunks,
             userName: req.session.user.name
         });
@@ -80,7 +106,7 @@ router.get('/add-bds', function addBds(req, res, next) {
     var newBds = new Bds();
     res.render('Admin/addbds', {
         title: 'Add Bds',
-        csrfToken: req.csrfToken(),
+        // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
         user: config_passport.User,
         messages: messages,
         hasErrors: messages.length > 0,
@@ -88,27 +114,9 @@ router.get('/add-bds', function addBds(req, res, next) {
     });
 
 });
-router.post('/add-bds', function addBds(req, res) {
-    var newBds = new Bds();
-    newBds.gia = req.body.gia;
-    newBds.sonha = req.body.sonha;
-    newBds.duong = req.body.duong;
-    newBds.phuong = req.body.phuong;
-    newBds.quan = req.body.quan;
-    newBds.dientich = req.body.dientich;
-    newBds.cautruc = req.body.cautruc;
-    newBds.vitri = req.body.vitri;
-    newBds.chusohuu = req.body.chusohuu;
-    newBds.trangthai = req.body.trangthai;
-    newBds.lienhe = req.body.lienhe;
 
-    newBds.save(function saveBds(err) {
-        if (err) {
-            console.log(err);
-        }
-        res.redirect('/admin/view-all-bds/');
-    });
-});
+router.post("/add-bds", upload.array("multiple_image", 10),user_controller.create);
+
 router.post('/delete-bds/:id', function deleteBds(req, res) {
     var id = req.params.id;
     Bds.findByIdAndRemove({_id: id}, function deleteBds(err) {
@@ -158,7 +166,7 @@ router.get('/bds-profile/:id', function getBdsProfile(req, res, next) {
         res.render('Admin/bdsProfile', {
             title: 'bds Profile',
             bdss: bds,
-            csrfToken: req.csrfToken(),
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             moment: moment,
             userName: req.session.user.name
         });
@@ -173,7 +181,7 @@ router.get('/edit-bds/:id', function editbds(req, res, next) {
         }
         res.render('Admin/editBds', {
             title: 'Edit Bds',
-            csrfToken: req.csrfToken(),
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             bdss: bds,
             moment: moment,
             message: '',
@@ -194,7 +202,7 @@ router.get('/add-employee', function addEmployee(req, res, next) {
 
     res.render('Admin/addEmployee', {
         title: 'Add Employee',
-        csrfToken: req.csrfToken(),
+        // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
         user: config_passport.User,
         messages: messages,
         hasErrors: messages.length > 0,
@@ -224,7 +232,7 @@ router.get('/all-employee-projects/:id', function getAllEmployeePojects(req, res
                 title: 'List Of Employee Projects',
                 hasProject: hasProject,
                 projects: projectChunks,
-                csrfToken: req.csrfToken(),
+                //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
                 user: user,
                 userName: req.session.user.name
             });
@@ -263,7 +271,7 @@ router.get('/leave-applications', function getLeaveApplications(req, res, next) 
         function render_view() {
             res.render('Admin/allApplications', {
                 title: 'List Of Leave Applications',
-                csrfToken: req.csrfToken(),
+                //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
                 hasLeave: hasLeave,
                 leaves: leaveChunks,
                 employees: employeeChunks, moment: moment, userName: req.session.user.name
@@ -287,7 +295,7 @@ router.get('/respond-application/:leave_id/:employee_id', function respondApplic
             }
             res.render('Admin/applicationResponse', {
                 title: 'Respond Leave Application',
-                csrfToken: req.csrfToken(),
+                //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
                 leave: leave,
                 employee: user,
                 moment: moment, userName: req.session.user.name
@@ -312,7 +320,7 @@ router.get('/employee-profile/:id', function getEmployeeProfile(req, res, next) 
         res.render('Admin/employeeProfile', {
             title: 'Employee Profile',
             employee: user,
-            csrfToken: req.csrfToken(),
+            //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             moment: moment,
             userName: req.session.user.name
         });
@@ -329,7 +337,7 @@ router.get('/edit-employee/:id', function editEmployee(req, res, next) {
         }
         res.render('Admin/editEmployee', {
             title: 'Edit Employee',
-            csrfToken: req.csrfToken(),
+            //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             employee: user,
             moment: moment,
             message: '',
@@ -350,7 +358,7 @@ router.get('/edit-employee-project/:id', function editEmployeeProject(req, res, 
         }
         res.render('Admin/editProject', {
             title: 'Edit Employee',
-            csrfToken: req.csrfToken(),
+            //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             project: project,
             moment: moment,
             message: '',
@@ -372,7 +380,7 @@ router.get('/add-employee-project/:id', function addEmployeeProject(req, res, ne
         }
         res.render('Admin/addProject', {
             title: 'Add Employee Project',
-            csrfToken: req.csrfToken(),
+            //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             employee: user,
             moment: moment,
             message: '',
@@ -402,7 +410,7 @@ router.get('/employee-project-info/:id', function viewEmployeeProjectInfo(req, r
                 moment: moment,
                 message: '',
                 userName: req.session.user.name,
-                csrfToken: req.csrfToken()
+                //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token()
             });
         })
 
@@ -441,7 +449,7 @@ router.post('/view-attendance', function viewAttendance(req, res, next) {
         res.render('Admin/viewAttendanceSheet', {
             title: 'Attendance Sheet',
             month: req.body.month,
-            csrfToken: req.csrfToken(),
+            //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             found: found,
             attendance: attendanceChunks,
             userName: req.session.user.name,
@@ -470,7 +478,7 @@ router.get('/view-attendance-current', function viewCurrentlyMarkedAttendance(re
         res.render('Admin/viewAttendanceSheet', {
             title: 'Attendance Sheet',
             month: new Date().getMonth() + 1,
-            csrfToken: req.csrfToken(),
+            //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             found: found,
             attendance: attendanceChunks,
             moment: moment,
@@ -496,7 +504,7 @@ router.get('/view-employee-attendance/:id', function viewEmployeeAttendance(req,
             res.render('Admin/employeeAttendanceSheet', {
                 title: 'Employee Attendance Sheet',
                 month: req.body.month,
-                csrfToken: req.csrfToken(),
+                //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
                 found: found,
                 attendance: attendanceChunks,
                 moment: moment,
@@ -566,7 +574,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res) {
                 if (user) {
                     res.render('Admin/editEmployee', {
                         title: 'Edit Employee',
-                        csrfToken: req.csrfToken(),
+                        //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
                         employee: newUser,
                         moment: moment,
                         message: 'Email is already in use', userName: req.session.user.name

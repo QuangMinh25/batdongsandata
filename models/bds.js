@@ -13,6 +13,11 @@ var BdsSchema = new Schema({
     chusohuu: {type: String, required: true},
     trangthai: {type: String, required: true},
     lienhe: {type: String, required: true},
+    multiple_image: {
+        type: []
+    }
 
 });
-module.exports = mongoose.model('Bds', BdsSchema);
+
+const Bds = mongoose.model("Bds", BdsSchema, "Bds");
+module.exports = Bds;

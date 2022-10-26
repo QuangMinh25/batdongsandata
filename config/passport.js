@@ -69,48 +69,6 @@ passport.use('local.add-employee', new LocalStrategy({
 }));
 
 
-////////////
-// passport.use('local.add-bds', new LocalStrategy({
-//     usernameField: 'email',
-//     passwordField: 'password',
-//     passReqToCallback: true
-// }, function (req, email, password, done) {
-//     req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-//     req.checkBody('password', 'Invalid password').notEmpty().isLength({min: 6});
-//     var errors = req.validationErrors();
-//     if (errors) {
-//         var messages = [];
-//         errors.forEach(function (error) {
-//             messages.push(error.msg);
-//         });
-//         return done(null, false, req.flash('error', messages));
-//     }
-//         var newBds = new Bds();
-//         newbds.gia = req.body.gia;
-//         newbds.sonha = req.body.sonha;
-//         newbds.duong = req.body.duong;
-//         newbds.phuong = req.body.phuong;
-//         newbds.quan = req.body.quan;
-//         newbds.dientich = req.body.dientich;
-//         newbds.cautruc = req.body.cautruc;
-//         newbds.vitri = req.body.vitri;
-//         newbds.chusohuu = req.body.chusohuu;
-//         newbds.trangthai = req.body.trangthai;
-//         newbds.lienhe = req.body.lienhe;
-//         newBds.save(function (err, result) {
-//             if (err) {
-//                 return done(err);
-//             }
-//             return done(null, newBds);
-//         });
-    
-// }));
-
-
-
-
-///////////
-
 
 passport.use('local.signin', new LocalStrategy({
     usernameField: 'email',
