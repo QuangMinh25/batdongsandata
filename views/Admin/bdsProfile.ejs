@@ -10,7 +10,13 @@
     <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link href="/stylesheets/simple-sidebar.css" rel="stylesheet">
-
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+          width: 100%;
+          height: 100%;
+        }
+        </style>
 </head>
 <body>
 <nav class="navbar navbar-default no-margin">
@@ -43,7 +49,6 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-            <!-- them san pham -->
             <li>
                 <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
                                 class="fa fa-home fa-stack-1x "></i></span> Dự Án</a>
@@ -55,28 +60,14 @@
                 </ul>
             </li>
 
-            <!-- them san pham -->
             <li>
-                <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
-                                class="fa fa-users fa-stack-1x "></i></span> Nhân Viên</a>
-                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                    <li><a href="/admin/view-all-employees"><span class="fa-stack fa-lg pull-left"><i
-                                        class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả nhân viên</a></li>
-                    <li><a href="/admin/add-employee"><span class="fa-stack fa-lg pull-left"><i
-                                        class="fa fa-plus fa-stack-1x "></i></span>Thêm nhân viên</a></li>
-                </ul>
+                <a href="/admin/applied-leaves"><span class="fa-stack fa-lg pull-left"><i
+                                class="fa fa-dashboard fa-stack-1x "></i></span> Xem đơn xin nghỉ</a>
             </li>
             <li>
-                <a href="/admin/leave-applications"><span class="fa-stack fa-lg pull-left"><i
-                                class="fa fa-envelope-square fa-stack-1x "></i></span> Đơn xin nghỉ phép</a></li>
-            <!-- <li data-toggle="modal" data-target="#myModal">
-                <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-list-ol fa-stack-1x "></i></span>View
-                    Attendance</a>
+                <a href="/admin/apply-for-leave"><span class="fa-stack fa-lg pull-left"><i
+                                class="fa fa-envelope-square fa-stack-1x "></i></span>Tạo đơn xin nghỉ</a>
             </li>
-            <li data-toggle="modal" data-target="#myModal2">
-                <a href="#"><span class="fa-stack fa-lg pull-left"><i
-                                class="fa fa-check-circle fa-stack-1x "></i></span>Mark Attendance</a>
-            </li> -->
             <li>
                 <a href="/admin/view-profile"><span class="fa-stack fa-lg pull-left"><i
                                 class="fa fa-user fa-stack-1x "></i></span>Trang cá nhân</a>
@@ -88,26 +79,149 @@
         <div class="container-fluid xyz">
             <div class="row">
                 <div class="col-lg-12">
-                    <div id="menu1" style="height:717px;">
-                        <h1>Chi tiết dự án</h1>
-                        <br>
-                        <form class="form-group-sm">
-                            <h4>Giá: <label id="gia"><%= bdss.gia %></label></h4>
-                            <h4>Số nhà : <label id="sonha"><%= bdss.sonha %></label></h4>
-                            <h4>Đường : <label id="duong"><%= bdss.duong %></label></h4>
-                            <h4>Quận : <label id="quan"><%= bdss.quan %></label></h4>
-                            <h4>Diện tích: <label id="dientich"><%= bdss.dientich %></label></h4>
-                            <h4>Cấu trúc : <label id="cautruc"><%= bdss.cautruc %></label></h4>
-                            <h4>Vị trí : <label id="vitri"><%= bdss.vitri %></label></h4>
-                            <h4>Chủ sở hửu : <label id="chusohuu"><%= bdss.chusohuu %></label></h4>
-                            <h4>Trạng thái : <label id="trangthai"><%= bdss.trangthai %></label></h4>
-                            <h4>Liên hệ	: <label id="lienhe"><%= bdss.lienhe %></label></h4>
-                        </form>
+                    <div id="menu1" style="height:auto;">
+                        <h2><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết dự án</h2>
+                       
+                        <table class="table">
+                            <thead class="table table-hover table-dark">
+                              <tr class="info">
+                                <th scope="col">Giá</th>
+                                <th scope="col">Số nhà</th>
+                                <th scope="col">Đường</th>
+                                <th scope="col">Quận</th>
+                                <th scope="col">Phường</th>
+                                <th scope="col">Diện tích</th>
+                                <th scope="col">Cấu trúc</th>
+                                <th scope="col">Vị trí</th>
+                                <th scope="col">Chủ sở hữu</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Liên hệ</th>
+                               
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td><%= bdss.gia %></td>
+                                <td><%= bdss.sonha %></td>
+                                <td><%= bdss.duong %></td>
+                                <td><%= bdss.quan %></td>
+                                <td><%= bdss.phuong %></td>
+                                <td><%= bdss.dientich %> m²</td>
+                                <td><%= bdss.cautruc %></td>
+                                <td><%= bdss.vitri %></td>
+                                <td><%= bdss.chusohuu %></td>
+                                <td><%= bdss.trangthai %></td>
+                                <td><%= bdss.lienhe %></td>
+                                
+                                
+                                    
+                              </tr>
+                            
+                            </tbody>
+                          </table>
+                          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            
+                            <ol class="carousel-indicators">
+                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                              <%if (bdss.multiple_image.length > 1) { %>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >2) { %>
+                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >3) { %>
+                                <li data-target="#myCarousel" data-slide-to="3"></li>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >4) { %>
+                                <li data-target="#myCarousel" data-slide-to="4"></li>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >5) { %>
+                                <li data-target="#myCarousel" data-slide-to="5"></li>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >6) { %>
+                                <li data-target="#myCarousel" data-slide-to="6"></li>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >7) { %>
+                                <li data-target="#myCarousel" data-slide-to="7"></li>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >8) { %>
+                                <li data-target="#myCarousel" data-slide-to="8"></li>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >9) { %>
+                                <li data-target="#myCarousel" data-slide-to="9"></li>
+                              <% } %>
+                            </ol>
+                            
+                            <div class="carousel-inner">
+                              <%if (bdss.multiple_image.length >= 0) { %>
+                                <div class="item active">
+                                  <img src="<%= bdss.multiple_image[0] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length > 1) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[1] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length > 2) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[2] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >3) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[3] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >4) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[4] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >5) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[5] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >6) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[6] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >7) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[7] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >8) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[8] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                              <%if (bdss.multiple_image.length >9) { %>
+                                <div class="item item">
+                                  <img src="<%= bdss.multiple_image[9] %>" class="img-rounded" alt="Cinque Terre">
+                                </div>
+                              <% } %>
+                            </div>
+                          
+                           
+                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                              <span class="glyphicon glyphicon-chevron-left"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                              <span class="glyphicon glyphicon-chevron-right"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    
     <!-- /#page-content-wrapper -->
 
 </div>
@@ -129,72 +243,6 @@
 
     });
 </script>
+
 </body>
-
-<div id="myModal2" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <form method="post" action="/admin/mark-attendance">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Mark Attendance</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to mark attendance.</p>
-                </div>
-                <div class="modal-footer">
-                    
-                    <button type="reset" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-default">Yes</button>
-                </div>
-
-            </div>
-        </form>
-    </div>
-</div>
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <form method="post" action="/admin/view-attendance">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Select Month/Year</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="Month">Month:</label>
-                        <select class="form-control" id="month" name="month">
-                            <option value="1">January</option>
-                            <option value="2">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="year">Year:</label>
-                        <select class="form-control" id="year" name="year">
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    
-                    <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-default">View</button>
-                </div>
-            </form>
-        </div>
-
-    </div>
-</div>
 </html>

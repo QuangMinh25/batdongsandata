@@ -131,7 +131,6 @@ router.post('/delete-bds/:id', function deleteBds(req, res) {
 
 router.post('/edit-bds/:id', function editBds(req, res) {
     var bdsId = req.params.id;
-    var newBds = new Bds();
     Bds.findById(bdsId, function (err, bds) {
         if (err) {
             console.log(err);
@@ -147,13 +146,11 @@ router.post('/edit-bds/:id', function editBds(req, res) {
         bds.chusohuu = req.body.chusohuu;
         bds.trangthai = req.body.trangthai;
         bds.lienhe = req.body.lienhe;
-
         bds.save(function saveBds(err) {
             if (err) {
                 console.log(err);
             }
             res.redirect('/admin/bds-profile/' + bdsId);
-
         });
     });
 });

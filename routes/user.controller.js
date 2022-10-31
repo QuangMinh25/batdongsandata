@@ -42,6 +42,7 @@ exports.create = async (req, res, next) => {
 
 };
 
+
 exports.find = (req, res, next) => {
     user_model.find()
         .then(found => {
