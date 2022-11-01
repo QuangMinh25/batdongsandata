@@ -110,7 +110,7 @@
                                 <td><%= item.type %></td>
                                 <td><%= item.status %></td>
                                 <td>
-                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    
                                     <form method="get" action="/employee/view-project/<%= item._id %>">
                                         <button><i class="fa fa-eye" title="View Projects Details"
                                                    aria-hidden="true"></i></button>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    
                     <button type="reset" class="btn btn-default" data-dismiss="modal">No</button>
                     <button type="submit" class="btn btn-default">Yes</button>
                 </div>
@@ -234,7 +234,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    
                     <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-default">View</button>
                 </div>

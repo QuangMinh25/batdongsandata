@@ -12,7 +12,7 @@ function upload(file) {
     });
 
     return new Q.Promise((resolve, reject) => {
-        cloudinary.v2.uploader.upload(file, {width: 400, height: 200}, (err, res) => {
+        cloudinary.v2.uploader.upload(file, {width: 600, height: 300}, (err, res) => {
             if (err) {
                 console.log('cloudinary err:', err);
                 reject(err);

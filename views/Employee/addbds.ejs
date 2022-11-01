@@ -84,7 +84,7 @@
                     <h1>Thêm dự án</h1>
                     <div id="menu2" style=" height:717px ;overflow: auto;">
 
-                        <form class="form-group-sm" action="/employee/add-bds" method="post">
+                        <form class="form-group-sm" action="/employee/add-bds" enctype="multipart/form-data" method="post">
                             <div class="form-group">
                                 <label for="gia">Giá:</label>
                                 <input type="text" required="required" class="form-control" id="gia" name="gia">
@@ -97,27 +97,222 @@
                                 <label for="duong">Đường:</label>
                                 <input type="text" required="required" class="form-control" id="duong" name="duong">
                             </div>
-                          
-                           
-                            <div class="form-group">
-                                <label for="phuong">Phường:</label>
-                                <select class="form-control" id="phuong" name="phuong">
-                                    <option value="Phường 1">Phường 1</option>
-                                    <option value="Phường 2">Phường 2</option>
-                                </select>
-                            </div>
-                           
                             <div class="form-group">
                                 <label for="quan">Quận:</label>
                                 <select class="form-control" id="quan" name="quan">
                                     <option value="Quận 1">Quận 1</option>
                                     <option value="Quận 2">Quận 2</option>
+                                    <option value="Quận 3">Quận 3</option>
+                                    <option value="Quận 4">Quận 4</option>
+                                    <option value="Quận 5">Quận 5</option>
+                                    <option value="Quận 6">Quận 6</option>
+                                    <option value="Quận 7">Quận 7</option>
+                                    <option value="Quận 8">Quận 8</option>
+                                    <option value="Quận 9">Quận 9</option>
+                                    <option value="Quận 10">Quận 10</option>
+                                    <option value="Quận 11">Quận 11</option>
+                                    <option value="Quận 12">Quận 12</option>
+                                    <option value="Quận Bình Thạnh">Quận Bình Thạnh</option>
+                                    <option value="Quận Gò Vấp">Quận Gò Vấp</option>
+                                    <option value="Quận Tân Bình">Quận Tân Bình</option>
+                                    <option value="Quận Tân Phú">Quận Tân Phú</option>
+                                    <option value="Quận Bình Tân">Quận Bình Tân</option>
+                                    <option value="Quận Phú Nhuận">Quận Phú Nhuận</option>
+                                    <option value="Thành phố Thủ Đức">Thành phố Thủ Đức</option>
+                                    <option value="Huyện Hóc Môn">Huyện Hóc Môn</option>
+                                    <option value="Huyện Bình Chánh">Huyện Bình Chánh</option>
+                                    <option value="Huyện Nhà Bè	">Huyện Nhà Bè</option>
+                                    <option value="Huyện Củ Chi">Huyện Củ Chi</option>
+                                    <option value="Huyện Cần Giờ">Huyện Cần Giờ</option>
                                 </select>
                             </div>
-            
+                            <div class="form-group">
+                                <label for="phuong">Phường:</label>
+                                <select class="form-control" id="phuong" name="phuong" onchange="myFunction()">
+                                    <option value="Phường 1">Phường 1</option>
+                                    <option value="Phường 2">Phường 2</option>
+                                    <option value="Phường 3">Phường 3</option>
+                                    <option value="Phường 4">Phường 4</option>
+                                    <option value="Phường 5">Phường 5</option>
+                                    <option value="Phường 6">Phường 6</option>
+                                    <option value="Phường 7">Phường 7</option>
+                                    <option value="Phường 8">Phường 8</option>
+                                    <option value="Phường 9">Phường 9</option>
+                                    <option value="Phường 10">Phường 10</option>
+                                    <option value="Phường 11">Phường 11</option>
+                                    <option value="Phường 12">Phường 12</option>
+                                    <option value="Phường 13">Phường 13</option>
+                                    <option value="Phường 14">Phường 14</option>
+                                    <option value="Phường 15">Phường 15</option>
+                                    <option value="Phường 16">Phường 16</option>
+                                    <option value="Phường 17">Phường 17</option>
+                                    <option value="Phường 18">Phường 18</option>
+                                    <option value="Phường 19">Phường 19</option>
+                                    <option value="Phường 20">Phường 20</option>
+                                    <option value="Phường 21">Phường 21</option>
+                                    <option value="Phường 22">Phường 22</option>
+                                    <option value="Phường 23">Phường 23</option>
+                                    <option value="Phường 24">Phường 24</option>
+                                    <option value="Phường 25">Phường 25</option>
+                                    <option value="Phường 26">Phường 26</option>
+                                    <option value="Phường 27">Phường 27</option>
+                                    <option value="Phường 28">Phường 28</option>
+                                    <option value="Phường Tân Định">Phường Tân Định</option>
+                                    <option value="Phường Đa Kao">Phường Đa Kao</option>
+                                    <option value="Phường Bến Nghé">Phường Bến Nghé</option>
+                                    <option value="Phường Bến Thành">Phường Bến Thành</option>
+                                    <option value="Phường Nguyễn Thái Bình">Phường Nguyễn Thái Bình</option>
+                                    <option value="Phường Phạm Ngũ Lão">Phường Phạm Ngũ Lão</option>
+                                    <option value="Phường Cầu Ông Lãnh">Phường Cầu Ông Lãnh</option>
+                                    <option value="Phường Cô Giang">Phường Cô Giang</option>
+                                    <option value="Phường Nguyễn Cư Trinh">Phường Nguyễn Cư Trinh</option>
+                                    <option value="Phường Cầu Kho">Phường Cầu Kho</option>
+                                    <option value="Phường Võ Thị Sáu">Phường Võ Thị Sáu</option>
+                                    <option value="Phường Thạnh Xuân">Phường Thạnh Xuân</option>
+                                    <option value="Phường Thạnh Lộc">Phường Thạnh Lộc</option>
+                                    <option value="Phường Hiệp Thành">Phường Hiệp Thành</option>
+                                    <option value="Phường Thới An">Phường Thới An</option>
+                                    <option value="Phường Tân Chánh Hiệp">Phường Tân Chánh Hiệp</option>
+                                    <option value="Phường An Phú Đông">Phường An Phú Đông</option>
+                                    <option value="Phường Tân Thới Hiệp">Phường Tân Thới Hiệp</option>
+                                    <option value="Phường Trung Mỹ Tây">Phường Trung Mỹ Tây</option>
+                                    <option value="Phường Tân Hưng Thuận">Phường Tân Hưng Thuận</option>
+                                    <option value="Phường Đông Hưng Thuận">Phường Đông Hưng Thuận</option>
+                                    <option value="Phường Tân Thới Nhất">Phường Tân Thới Nhất</option>
+                                    <option value="Phường Tân Sơn Nhì">Phường Tân Sơn Nhì</option>
+                                    <option value="Phường Tây Thạnh">Phường Tây Thạnh</option>
+                                    <option value="Phường Sơn Kỳ">Phường Sơn Kỳ</option>
+                                    <option value="Phường Tân Quý">Phường Tân Quý</option>
+                                    <option value="Phường Tân Thành">Phường Tân Thành</option>
+                                    <option value="Phường Phú Thọ Hòa">Phường Phú Thọ Hòa</option>
+                                    <option value="Phường Phú Thạnh">Phường Phú Thạnh</option>
+                                    <option value="Phường Phú Trung">Phường Phú Trung</option>
+                                    <option value="Phường Hòa Thạnh">Phường Hòa Thạnh</option>
+                                    <option value="Phường Hiệp Tân">Phường Hiệp Tân</option>
+                                    <option value="Phường Tân Thới Hòa">Phường Tân Thới Hòa</option>
+                                    <option value="Phường Bình Hưng Hòa">Phường Bình Hưng Hòa</option>
+                                    <option value="Phường Bình Hưng Hoà A">Phường Bình Hưng Hoà A</option>
+                                    <option value="Phường Bình Hưng Hoà B">Phường Bình Hưng Hoà B</option>
+                                    <option value="Phường Bình Trị Đông">Phường Bình Trị Đông</option>
+                                    <option value="Phường Bình Trị Đông A">Phường Bình Trị Đông A</option>
+                                    <option value="Phường Bình Trị Đông B">Phường Bình Trị Đông B</option>
+                                    <option value="Phường Tân Tạo">Phường Tân Tạo</option>
+                                    <option value="Phường Tân Tạo A">Phường Tân Tạo A</option>
+                                    <option value="Phường An Lạc">Phường An Lạc</option>
+                                    <option value="Phường An Lạc A">Phường An Lạc A</option>
+                                    <option value="Phường Tân Thuận Đông">Phường Tân Thuận Đông</option>
+                                    <option value="Phường Tân Thuận Tây">Phường Tân Thuận Tây</option>
+                                    <option value="Phường Tân Kiểng">Phường Tân Kiểng</option>
+                                    <option value="Phường Tân Hưng">Phường Tân Hưng</option>
+                                    <option value="Phường Bình Thuận">Phường Bình Thuận</option>
+                                    <option value="Phường Tân Quy">Phường Tân Quy</option>
+                                    <option value="Phường Phú Thuận">Phường Phú Thuận</option>
+                                    <option value="Phường Tân Phú">Phường Tân Phú</option>
+                                    <option value="Phường Tân Phong">Phường Tân Phong</option>
+                                    <option value="Phường Phú Mỹ">Phường Phú Mỹ</option>
+                                    <option value="Phường Linh Xuân">Phường Linh Xuân</option>
+                                    <option value="Phường Bình Chiểu">Phường Bình Chiểu</option>
+                                    <option value="Phường Linh Trung">Phường Linh Trung</option>
+                                    <option value="Phường Tam Bình">Phường Tam Bình</option>
+                                    <option value="Phường Tam Phú">Phường Tam Phú</option>
+                                    <option value="Phường Hiệp Bình Phước">Phường Hiệp Bình Phước</option>
+                                    <option value="Phường Hiệp Bình Chánh">Phường Hiệp Bình Chánh</option>
+                                    <option value="Phường Linh Chiểu">Phường Linh Chiểu</option>
+                                    <option value="Phường Linh Tây">Phường Linh Tây</option>
+                                    <option value="Phường Linh Đông">Phường Linh Đông</option>
+                                    <option value="Phường Bình Thọ">Phường Bình Thọ</option>
+                                    <option value="Phường Trường Thọ">Phường Trường Thọ</option>
+                                    <option value="Phường Long Bình">Phường Long Bình</option>
+                                    <option value="Phường Long Thạnh Mỹ">Phường Long Thạnh Mỹ</option>
+                                    <option value="Phường Tân Phú">Phường Tân Phú</option>
+                                    <option value="Phường Hiệp Phú">Phường Hiệp Phú</option>
+                                    <option value="Phường Tăng Nhơn Phú A">Phường Tăng Nhơn Phú A</option>
+                                    <option value="Phường Tăng Nhơn Phú B">Phường Tăng Nhơn Phú B</option>
+                                    <option value="Phường Phước Long B">Phường Phước Long B</option>
+                                    <option value="Phường Phước Long A">Phường Phước Long A</option>
+                                    <option value="Phường Trường Thạnh">Phường Trường Thạnh</option>
+                                    <option value="Phường Long Phước">Phường Long Phước</option>
+                                    <option value="Phường Long Trường">Phường Long Trường</option>
+                                    <option value="Phường Phước Bình">Phường Phước Bình</option>
+                                    <option value="Phường Phú Hữu">Phường Phú Hữu</option>
+                                    <option value="Phường Thảo Điền">Phường Thảo Điền</option>
+                                    <option value="Phường An Phú">Phường An Phú</option>
+                                    <option value="Phường An Khánh">Phường An Khánh</option>
+                                    <option value="Phường Bình Trưng Đông">Phường Bình Trưng Đông</option>
+                                    <option value="Phường Bình Trưng Tây">Phường Bình Trưng Tây</option>
+                                    <option value="Phường Cát Lái">Phường Cát Lái</option>
+                                    <option value="Phường Thạnh Mỹ Lợi">Phường Thạnh Mỹ Lợi</option>
+                                    <option value="Phường An Lợi Đông">Phường An Lợi Đông</option>
+                                    <option value="Phường Thủ Thiêm">Phường Thủ Thiêm</option>
+                                    <option value="Thị trấn Củ Chi">Thị trấn Củ Chi</option>
+                                    <option value="Xã Phú Mỹ Hưng">Xã Phú Mỹ Hưng</option>
+                                    <option value="Xã An Phú">Xã An Phú</option>
+                                    <option value="Xã Trung Lập Thượng">Xã Trung Lập Thượng</option>
+                                    <option value="Xã An Nhơn Tây">Xã An Nhơn Tây</option>
+                                    <option value="Xã Nhuận Đức">Xã Nhuận Đức</option>
+                                    <option value="Xã Phạm Văn Cội">Xã Phạm Văn Cội</option>
+                                    <option value="Xã Phú Hòa Đông">Xã Phú Hòa Đông</option>
+                                    <option value="Xã Trung Lập Hạ">Xã Trung Lập Hạ</option>
+                                    <option value="Xã Trung An">Xã Trung An</option>
+                                    <option value="Xã Phước Thạnh">Xã Phước Thạnh</option>
+                                    <option value="Xã Phước Hiệp">Xã Phước Hiệp</option>
+                                    <option value="Xã Tân An Hội">Xã Tân An Hội</option>
+                                    <option value="Xã Phước Vĩnh An">Xã Phước Vĩnh An</option>
+                                    <option value="Xã Thái Mỹ">Xã Thái Mỹ</option>
+                                    <option value="Xã Tân Thạnh Tây">Xã Tân Thạnh Tây</option>
+                                    <option value="Xã Hòa Phú">Xã Hòa Phú</option>
+                                    <option value="Xã Tân Thạnh Đông">Xã Tân Thạnh Đông</option>
+                                    <option value="Xã Bình Mỹ">Xã Bình Mỹ</option>
+                                    <option value="Xã Tân Phú Trung">Xã Tân Phú Trung</option>
+                                    <option value="Xã Tân Thông Hội">Xã Tân Thông Hội</option>
+                                    <option value="Thị trấn Hóc Môn">Thị trấn Hóc Môn</option>
+                                    <option value="Xã Tân Hiệp">Xã Tân Hiệp</option>
+                                    <option value="Xã Nhị Bình">Xã Nhị Bình</option>
+                                    <option value="Xã Đông Thạnh">Xã Đông Thạnh</option>
+                                    <option value="Xã Tân Thới Nhì">Xã Tân Thới Nhì</option>
+                                    <option value="Xã Thới Tam Thôn">Xã Thới Tam Thôn</option>
+                                    <option value="Xã Xuân Thới Sơn">Xã Xuân Thới Sơn</option>
+                                    <option value="Xã Tân Xuân">Xã Tân Xuân</option>
+                                    <option value="Xã Xuân Thới Đông">Xã Xuân Thới Đông</option>
+                                    <option value="Xã Trung Chánh">Xã Trung Chánh</option>
+                                    <option value="Xã Xuân Thới Thượng">Xã Xuân Thới Thượng</option>
+                                    <option value="Xã Bà Điểm">Xã Bà Điểm</option>
+                                    <option value="Thị trấn Tân Túc">Thị trấn Tân Túc</option>
+                                    <option value="Xã Phạm Văn Hai">Xã Phạm Văn Hai</option>
+                                    <option value="Xã Vĩnh Lộc A">Xã Vĩnh Lộc A</option>
+                                    <option value="Xã Vĩnh Lộc B">Xã Vĩnh Lộc B</option>
+                                    <option value="Xã Bình Lợi">Xã Bình Lợi</option>
+                                    <option value="Xã Lê Minh Xuân">Xã Lê Minh Xuân</option>
+                                    <option value="Xã Tân Nhựt">Xã Tân Nhựt</option>
+                                    <option value="Xã Tân Kiên">Xã Tân Kiên</option>
+                                    <option value="Xã Bình Hưng">Xã Bình Hưng</option>
+                                    <option value="Xã Phong Phú">Xã Phong Phú</option>
+                                    <option value="Xã An Phú Tây">Xã An Phú Tây</option>
+                                    <option value="Xã Hưng Long">Xã Hưng Long</option>
+                                    <option value="Xã Đa Phước">Xã Đa Phước</option>
+                                    <option value="Xã Tân Quý Tây">Xã Tân Quý Tây</option>
+                                    <option value="Xã Bình Chánh">Xã Bình Chánh</option>
+                                    <option value="Xã Quy Đức">Xã Quy Đức</option>
+                                    <option value="Thị trấn Nhà Bè">Thị trấn Nhà Bè</option>
+                                    <option value="Xã Phước Kiển">Xã Phước Kiển</option>
+                                    <option value="Xã Phước Lộc">Xã Phước Lộc</option>
+                                    <option value="Xã Nhơn Đức">Xã Nhơn Đức</option>
+                                    <option value="Xã Phú Xuân">Xã Phú Xuân</option>
+                                    <option value="Xã Long Thới">Xã Long Thới</option>
+                                    <option value="Xã Hiệp Phước">Xã Hiệp Phước</option>
+                                    <option value="Thị trấn Cần Thạnh">Thị trấn Cần Thạnh</option>
+                                    <option value="Xã Bình Khánh">Xã Bình Khánh</option>
+                                    <option value="Xã Tam Thôn Hiệp">Xã Tam Thôn Hiệp</option>
+                                    <option value="Xã An Thới Đông">Xã An Thới Đông</option>
+                                    <option value="Xã Thạnh An">Xã Thạnh An</option>
+                                    <option value="Xã Long Hòa">Xã Long Hòa</option>
+                                    <option value="Xã Lý Nhơn">Xã Lý Nhơn</option>
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label for="dientich">Diện Tích:</label>
-                                <input type="text" required="required" class="form-control" id="dientich" name="dientich">
+                                <input type="number" required="required" class="form-control" id="dientich" name="dientich">
                             </div>
                            
                             <div class="form-group">
@@ -150,10 +345,14 @@
                                 <label for="lienhe">Liên hệ:</label>
                                 <input type="text" required="required" class="form-control" id="lienhe" name="lienhe">
                             </div>
-
-                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <div class="form-group">
+                                <label for="multiple_image">Hình ảnh:</label>
+                                <input type="file" name="multiple_image" accept='image/*' multiple required="required" id="multiple_image" >
+                            </div>
+                            
+                            
                             <button type="button" onclick="history.go(-1);" class="btn btn-default">Trở lại</button>
-                            <button type="submit" class="btn btn-default">Thêm</button>
+                            <button type="submit" class="btn btn-default" onclick="return Filevalidation();">Thêm</button>
                         </form>
                     </div>
                 </div>
@@ -165,11 +364,17 @@
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="/javascripts/sidebar_menu.js"></script>
 <script src="/javascripts/bootstrap-select.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script language="Javascript" type="text/javascript">
 
     function onlyAlphabets(e, t) {
@@ -195,6 +400,23 @@
 
 </script>
 <script>
+
+    
+
+Filevalidation = () => {
+        const fi = document.getElementById('multiple_image');
+        // Check if any file is selected.
+        if (fi.files.length > 10) {
+            swal("Tối đa 10 hình ảnh", "Xin mời thực hiện lại!", "error");
+            return false;
+            }
+        }
+    
+
+</script>
+
+
+<script>
     $(document).ready(function () {
         $('.selectpicker').selectpicker();
         $('#menu4').click();
@@ -208,71 +430,5 @@
 </script>
 
 </body>
-
-<div id="myModal2" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <form method="post" action="/employee/mark-attendance">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Mark Attendance</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to mark attendance.</p>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <button type="reset" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-default">Yes</button>
-                </div>
-
-            </div>
-        </form>
-    </div>
-</div>
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <form method="post" action="/employee/view-attendance">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Select Month/Year</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="Month">Month:</label>
-                        <select class="form-control" id="month" name="month">
-                            <option value="1">January</option>
-                            <option value="2">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="year">Year:</label>
-                        <select class="form-control" id="year" name="year">
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-default">View</button>
-                </div>
-            </form>
-        </div>
-
-    </div>
 </div>
 </html>
