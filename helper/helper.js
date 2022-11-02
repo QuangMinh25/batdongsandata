@@ -5,9 +5,9 @@ const Q = require("q");
 
 function upload(file) {
     cloudinary.config({
-        cloud_name: "dcbjslrlx",
-        api_key: "698879119315635",
-        api_secret: "a9D4t2XM5gSkWqXOlnm_vUphUW4"
+        cloud_name: process.env.CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
 
     });
 
