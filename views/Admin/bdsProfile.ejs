@@ -18,11 +18,7 @@
         }
         
         </style>
-        <style>
-          .wrapper sidebar-wrapper{
-            height: 1000px;
-        }
-        </style>
+        
 </head>
 <body>
 <nav class="navbar navbar-default no-margin">
@@ -51,41 +47,47 @@
         </ul>
     </div><!-- bs-example-navbar-collapse-1 -->
 </nav>
-<div id="wrapper">
+<div id="wrapper" style="height:100%;">
     <!-- Sidebar -->
-    <div id="sidebar-wrapper" >
-        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-            <li>
-                <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
-                                class="fa fa-home fa-stack-1x "></i></span> Dự Án</a>
-                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                    <li><a href="/admin/view-all-bds"><span class="fa-stack fa-lg pull-left"><i
-                                        class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả dự án</a></li>
-                    <li><a href="/admin/add-bds"><span class="fa-stack fa-lg pull-left"><i
-                                        class="fa fa-plus fa-stack-1x "></i></span>Thêm dự án</a></li>
-                </ul>
-            </li>
+    <div id="sidebar-wrapper" style="height:100%;">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="menu" style="height:100%;">
+          <li>
+            <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-home fa-stack-1x "></i></span> Dự Án</a>
+            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                <li><a href="/admin/view-all-bds"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả dự án</a></li>
+                <li><a href="/admin/add-bds"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-plus fa-stack-1x "></i></span>Thêm dự án</a></li>
+            </ul>
+        </li>
 
-            <li>
-                <a href="/admin/applied-leaves"><span class="fa-stack fa-lg pull-left"><i
-                                class="fa fa-dashboard fa-stack-1x "></i></span> Xem đơn xin nghỉ</a>
-            </li>
-            <li>
-                <a href="/admin/apply-for-leave"><span class="fa-stack fa-lg pull-left"><i
-                                class="fa fa-envelope-square fa-stack-1x "></i></span>Tạo đơn xin nghỉ</a>
-            </li>
-            <li>
-                <a href="/admin/view-profile"><span class="fa-stack fa-lg pull-left"><i
-                                class="fa fa-user fa-stack-1x "></i></span>Trang cá nhân</a>
-            </li>
+        <!-- them san pham -->
+        <li>
+            <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-users fa-stack-1x "></i></span> Nhân Viên</a>
+            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                <li><a href="/admin/view-all-employees"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả nhân viên</a></li>
+                <li><a href="/admin/add-employee"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-plus fa-stack-1x "></i></span>Thêm nhân viên</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/admin/leave-applications"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-envelope-square fa-stack-1x "></i></span> Đơn xin nghỉ phép</a></li>
+        <li>
+            <a href="/admin/view-profile"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-user fa-stack-1x "></i></span>Trang cá nhân</a>
+        </li>
         </ul>
     </div><!-- /#sidebar-wrapper -->
     <!-- Page Content -->
-    <div id="page-content-wrapper">
-        <div class="container-fluid xyz">
+    <div id="page-content-wrapper" style="height:100%;">
+        <div class="container-fluid xyz" style="height:100%;">
             <div class="row">
                 <div class="col-lg-12">
-                    <div id="menu1" style="height:auto;">
+                    <div id="menu1" style="height:100%;">
                         <h2><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết dự án</h2>
                        
                         <table class="table">
