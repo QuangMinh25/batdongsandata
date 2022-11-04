@@ -37,7 +37,7 @@
             <li class="navbar-brand">
                 <form action="/logout" method="get">
                     <button id="logout" type="submit" style="margin-top: -3px;" class="btn btn-default"><i
-                                class="fa fa-user" aria-hidden="true"></i> Logout
+                                class="fa fa-user" aria-hidden="true"></i> Đăng Xuất
                     </button>
                 </form>
             </li>
@@ -94,7 +94,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Thêm nhân viên</h1>
-                    <div id="menu1" style=" height:717px ;overflow: auto;">
+                    <div id="menu1" style=" height:100% ;overflow: auto;">
 
                         <form class="form-group-sm" action="/admin/add-employee" method="post">
                             <div class="form-group">
@@ -323,7 +323,7 @@
         $('#menu3').click();
         var box1height = $('#menu1').height();
         // Set box2 height equal to box1
-        $('#sidebar-wrapper').height(box1height * 1.2);
+        $('#sidebar-wrapper').height(1000);
         for (i = new Date().getFullYear(); i > 1950; i--) {
             $('#year').append($('<option />').val(i).html(i));
         }

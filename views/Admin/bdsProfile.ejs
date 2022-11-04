@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.css" rel="stylesheet">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/jquery.dataTables.css" rel="stylesheet">
-    <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet">
+    <!-- <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet"> -->
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link href="/stylesheets/simple-sidebar.css" rel="stylesheet">
     <style>
@@ -15,6 +15,11 @@
         .carousel-inner img {
           width: 100%;
           height: 100%;
+        }
+        </style>
+        <style>
+          .wrapper sidebar-wrapper{
+            height: 100%;
         }
         </style>
         
@@ -46,10 +51,10 @@
         </ul>
     </div><!-- bs-example-navbar-collapse-1 -->
 </nav>
-<div id="wrapper" style="height:100%;">
+<div id="wrapper">
     <!-- Sidebar -->
-    <div id="sidebar-wrapper" style="height:100%;">
-        <ul class="sidebar-nav nav-pills nav-stacked" id="menu" style="height:100%;">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
           <li>
             <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
                             class="fa fa-home fa-stack-1x "></i></span> Dự Án</a>
@@ -82,14 +87,14 @@
         </ul>
     </div><!-- /#sidebar-wrapper -->
     <!-- Page Content -->
-    <div id="page-content-wrapper" style="height:100%;">
-        <div class="container-fluid xyz" style="height:100%;">
+    <div id="page-content-wrapper">
+        <div class="container-fluid xyz">
             <div class="row">
                 <div class="col-lg-12">
-                    <div id="menu1" style="height:100%;">
+                  <div id="menu1" style="height:100%; overflow: auto">
                         <h2><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết dự án</h2>
                        
-                        <table class="table">
+                        <table table id="example" class="table" cellspacing="0" style="height: 10%; overflow: auto;">
                             <thead class="table table-hover table-dark">
                               <tr class="info">
                                 <th scope="col">Giá</th>
@@ -243,7 +248,7 @@
     $(document).ready(function () {
         var box1height = $('#menu1').height();
         // Set box2 height equal to box1
-        $('#sidebar-wrapper').height(box1height * 1.2);
+        $('#sidebar-wrapper').height(1300);
         for (i = new Date().getFullYear(); i > 1950; i--) {
             $('#year').append($('<option />').val(i).html(i));
         }
