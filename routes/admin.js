@@ -129,31 +129,36 @@ router.post('/delete-bds/:id', function deleteBds(req, res) {
     });
 });
 
-router.post('/edit-bds/:id', function editBds(req, res) {
-    var bdsId = req.params.id;
-    Bds.findById(bdsId, function (err, bds) {
-        if (err) {
-            console.log(err);
-        }
-        bds.gia = req.body.gia;
-        bds.sonha = req.body.sonha;
-        bds.duong = req.body.duong;
-        bds.phuong = req.body.phuong;
-        bds.quan = req.body.quan;
-        bds.dientich = req.body.dientich;
-        bds.cautruc = req.body.cautruc;
-        bds.vitri = req.body.vitri;
-        bds.chusohuu = req.body.chusohuu;
-        bds.trangthai = req.body.trangthai;
-        bds.lienhe = req.body.lienhe;
-        bds.save(function saveBds(err) {
-            if (err) {
-                console.log(err);
-            }
-            res.redirect('/admin/bds-profile/' + bdsId);
-        });
-    });
-});
+// router.post('/edit-bds/:id', function editBds(req, res) {
+//     var bdsId = req.params.id;
+//     Bds.findById(bdsId, function (err, bds) {
+//         if (err) {
+//             console.log(err);
+//         }
+//         bds.gia = req.body.gia;
+//         bds.sonha = req.body.sonha;
+//         bds.duong = req.body.duong;
+//         bds.phuong = req.body.phuong;
+//         bds.quan = req.body.quan;
+//         bds.dientich = req.body.dientich;
+//         bds.cautruc = req.body.cautruc;
+//         bds.vitri = req.body.vitri;
+//         bds.chusohuu = req.body.chusohuu;
+//         bds.trangthai = req.body.trangthai;
+//         bds.lienhe = req.body.lienhe;
+//         bds.save(function saveBds(err) {
+//             if (err) {
+//                 console.log(err);
+//             }
+//             res.redirect('/admin/bds-profile/' + bdsId);
+//         });
+//     });
+// });
+
+router.post("/edit-bds/:id", upload.array("multiple_image", 10),user_controller.edit);
+
+
+
 router.get('/bds-profile/:id', function getBdsProfile(req, res, next) {
     var bdsId = req.params.id;
     Bds.findById(bdsId, function getBds(err, bds) {
@@ -558,7 +563,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res) {
         newUser.department = req.body.department;
     newUser.Skills = req.body['skills[]'];
     newUser.designation = req.body.designation;
-
+    newUser.password = req.body.password;
     User.findById(employeeId, function getUser(err, user) {
         if (err) {
             res.redirect('/admin/');
@@ -596,7 +601,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res) {
             user.department = req.body.department;
         user.Skills = req.body['skills[]'];
         user.designation = req.body.designation;
-
+        user.password = req.body.password;
         user.save(function saveUser(err) {
             if (err) {
                 console.log(err);

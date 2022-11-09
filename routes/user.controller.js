@@ -43,6 +43,50 @@ exports.create = async (req, res, next) => {
 };
 
 
+exports.edit = async (req, res, next) => {
+    if (!req.files || _.isEmpty(req.files)) {
+        return res.status(400)
+            .json(vm.ApiResponse(false, 400, "No file uploaded'"))
+    }
+    var bdsId = req.params.id;
+    user_model.findByIdAndRemove(bdsId, async function (err, bds) {
+        if (err) {
+            console.log(err);
+        }
+    const files = req.files;
+    try {
+        let urls = [];
+        let multiple = async (path) => await upload(path);
+        for (const file of files) {
+            const {path} = file;
+            console.log("path", file);
+            const newPath = await multiple(path);
+            urls.push(newPath);
+            fs.unlinkSync(path);
+        }
+        if (urls) {
+            let body = req.body;
+            let bodyw = _.extend(body, {multiple_image: urls});
+            bds = user_model(bodyw);
+            bds.save();
+            res.redirect('/admin/view-all-bds');
+
+        }
+        if (!urls) {
+            return res.status(400)
+                .json(vm.ApiResponse(false, 400, ""))
+        }
+
+    } catch (e) {
+        console.log("err :", e);
+        return next(e);
+    }
+});
+};
+
+
+
+
 exports.find = (req, res, next) => {
     user_model.find()
         .then(found => {
