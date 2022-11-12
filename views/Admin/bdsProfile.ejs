@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.css" rel="stylesheet">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/jquery.dataTables.css" rel="stylesheet">
-    <!-- <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet"> -->
+    <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link href="/stylesheets/simple-sidebar.css" rel="stylesheet">
     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
-          width: 450px;
-          height: 650px;
+          width: 300px;
+          height: 400px;
           object-fit: cover;
           display: block;
           margin-left: auto;
@@ -22,18 +22,86 @@
         }
         .carousel-inner{
           width: 600px;
-          height: 800px;
+          height: 400px;
           background-color:white;
           display: block;
           margin-left: auto;
           margin-right: auto;
         }
         </style>
-        <style>
-          .wrapper sidebar-wrapper{
-            height: 100%;
-        }
-        </style>
+<style>
+  #myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+#myImg:hover {opacity: 0.7;}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    padding: 200px; /* Location of the box */
+    left: 0;
+    top: 0;
+    right: 20;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 60%;
+    max-width: 100%;
+}
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(1)}
+    to {-webkit-transform:scale(2)}
+}
+ 
+@keyframes zoom {
+    from {transform:scale(0.4)}
+    to {transform:scale(1)}
+}
+@-webkit-keyframes zoom-out {
+    from {transform:scale(1)}
+    to {transform:scale(0)}
+}
+@keyframes zoom-out {
+    from {transform:scale(1)}
+    to {transform:scale(0)}
+}
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+.out {
+  animation-name: zoom-out;
+  animation-duration: 0.6s;
+}
+@media only screen and (max-width: 300px){
+    .modal-content {
+        width: 100%;
+    }
+}
+</style>
         
 </head>
 <body>
@@ -178,53 +246,53 @@
                             <div class="carousel-inner">
                               <%if (bdss.multiple_image.length > 0) { %>
                                 <div class="item active" >
-                                  <img src="<%= bdss.multiple_image[0] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[0] %>" alt="Smile" id="imgSmile" >
                                 </div>
                               <% } %>
                                
                               <%if (bdss.multiple_image.length > 1) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[1] %>">
+                                  <img id="myImg" src="<%= bdss.multiple_image[1] %>">
                                 </div>
                               <% } %>
                               <%if (bdss.multiple_image.length > 2) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[2] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[2] %>" >
                                 </div>
                               <% } %>
                               <%if (bdss.multiple_image.length > 3) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[3] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[3] %>" >
                                 </div>
                               <% } %>
                               <%if (bdss.multiple_image.length > 4) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[4] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[4] %>" >
                                 </div>
                               <% } %>
                               <%if (bdss.multiple_image.length > 5) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[5] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[5] %>" >
                                 </div>
                               <% } %>
                               <%if (bdss.multiple_image.length > 6) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[6] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[6] %>" >
                                 </div>
                               <% } %>
                               <%if (bdss.multiple_image.length > 7) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[7] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[7] %>" >
                                 </div>
                               <% } %>
                               <%if (bdss.multiple_image.length > 8) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[8] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[8] %>" >
                                 </div>
                               <% } %>
                               <%if (bdss.multiple_image.length > 9) { %>
                                 <div class="item item">
-                                  <img src="<%= bdss.multiple_image[9] %>" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[9] %>" >
                                 </div>
                               <% } %>
                             </div>
@@ -243,10 +311,14 @@
             </div>
         </div>
     </div>
-
-    
-    <!-- /#page-content-wrapper -->
-
+</div>
+<div>
+  <!-- Image Zoom HTML -->   
+<!-- The Modal -->
+<div id="myModal" class="modal">
+   <img class="modal-content" id="img01">
+<div id="caption"></div>
+</div>
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
@@ -256,15 +328,26 @@
 <script src="/javascripts/bootstrap-select.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
 <script>
-    $(document).ready(function () {
-        var box1height = $('#menu1').height();
-        // Set box2 height equal to box1
-        $('#sidebar-wrapper').height(1300);
-        for (i = new Date().getFullYear(); i > 1950; i--) {
-            $('#year').append($('<option />').val(i).html(i));
-        }
-
-    });
+  // Get the modal
+  var modal = document.getElementById('myModal');
+  // Get the image and insert it inside the modal - use its "alt" text as a caption
+  var img = document.getElementById('myImg');
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+  img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      modalImg.alt = this.alt;
+      captionText.innerHTML = this.alt;
+  }
+  // When the user clicks on <span> (x), close the modal
+  modal.onclick = function() {
+      img01.className += " out";
+      setTimeout(function() {
+         modal.style.display = "none";
+         img01.className = "modal-content";
+       }, 400);
+   }    
 </script>
 
 <script>

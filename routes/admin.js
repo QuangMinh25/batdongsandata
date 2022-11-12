@@ -544,7 +544,7 @@ router.post('/respond-application', function respondApplication(req, res) {
 });
 
 
-router.post('/edit-employee/:id', function editEmployee(req, res) {
+router.post('/edit-employee/:id', function editEmployee(req, res,password) {
     var employeeId = req.params.id;
     var newUser = new User();
     newUser.email = req.body.email;
@@ -563,7 +563,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res) {
         newUser.department = req.body.department;
     newUser.Skills = req.body['skills[]'];
     newUser.designation = req.body.designation;
-    newUser.password = req.body.password;
+    newUser.password = newUser.encryptPassword(password);
     User.findById(employeeId, function getUser(err, user) {
         if (err) {
             res.redirect('/admin/');
@@ -601,7 +601,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res) {
             user.department = req.body.department;
         user.Skills = req.body['skills[]'];
         user.designation = req.body.designation;
-        user.password = req.body.password;
+        user.password = newUser.encryptPassword(password);
         user.save(function saveUser(err) {
             if (err) {
                 console.log(err);
