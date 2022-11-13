@@ -13,6 +13,15 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 var Bds = require('../models/bds');
 var config_passport = require('../config/passport.js');
+////////
+var multer = require("multer");
+var _ = require("underscore");
+var fs = require("fs");
+var upload = require("../helper/helper").upload;
+var vm = require("v-response");
+const user_controller = require("./user.controller");
+///////
+
 router.use('/', isLoggedIn, function checkAuthentication(req, res, next) {
     next();
 });
@@ -27,10 +36,28 @@ router.get('/', function viewHomePage(req, res, next) {
 });
 
 
-
-
-
 //////////////////
+let storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        console.log("file", file);
+        callback(null, "./public/");
+    },
+    filename: function (req, file, callback) {
+        // console.log("multer file:", file);
+        callback(null, file.originalname);
+    }
+});
+let maxSize = 1000000 * 1000;
+var upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: maxSize
+    }
+});
+
+//////////////////////////////////////////////////////////////////////
+
+
 router.get('/view-all-bds', function viewAllBds(req, res, next) {
     var bdsChunks = [];
     //find is asynchronous function
@@ -40,18 +67,19 @@ router.get('/view-all-bds', function viewAllBds(req, res, next) {
         }
         res.render('Manager/viewAllbds', {
             title: 'Tất cả dự án',
-            csrfToken: req.csrfToken(),
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             bdss: bdsChunks,
             userName: req.session.user.name
         });
     });
+
+   
 });
 router.get('/add-bds', function addBds(req, res, next) {
     var messages = req.flash('error');
     var newBds = new Bds();
     res.render('Manager/addbds', {
         title: 'Add Bds',
-        csrfToken: req.csrfToken(),
         user: config_passport.User,
         messages: messages,
         hasErrors: messages.length > 0,
@@ -59,27 +87,7 @@ router.get('/add-bds', function addBds(req, res, next) {
     });
 
 });
-router.post('/add-bds', function addBds(req, res) {
-    var newBds = new Bds();
-    newBds.gia = req.body.gia;
-    newBds.sonha = req.body.sonha;
-    newBds.duong = req.body.duong;
-    newBds.phuong = req.body.phuong;
-    newBds.quan = req.body.quan;
-    newBds.dientich = req.body.dientich;
-    newBds.cautruc = req.body.cautruc;
-    newBds.vitri = req.body.vitri;
-    newBds.chusohuu = req.body.chusohuu;
-    newBds.trangthai = req.body.trangthai;
-    newBds.lienhe = req.body.lienhe;
-
-    newBds.save(function saveBds(err) {
-        if (err) {
-            console.log(err);
-        }
-        res.redirect('/Manager/view-all-bds/');
-    });
-});
+router.post("/add-bds", upload.array("multiple_image", 10),user_controller.create);
 router.post('/delete-bds/:id', function deleteBds(req, res) {
     var id = req.params.id;
     Bds.findByIdAndRemove({_id: id}, function deleteBds(err) {
@@ -91,35 +99,7 @@ router.post('/delete-bds/:id', function deleteBds(req, res) {
         }
     });
 });
-
-router.post('/edit-bds/:id', function editBds(req, res) {
-    var bdsId = req.params.id;
-    var newBds = new Bds();
-    Bds.findById(bdsId, function (err, bds) {
-        if (err) {
-            console.log(err);
-        }
-        bds.gia = req.body.gia;
-        bds.sonha = req.body.sonha;
-        bds.duong = req.body.duong;
-        bds.phuong = req.body.phuong;
-        bds.quan = req.body.quan;
-        bds.dientich = req.body.dientich;
-        bds.cautruc = req.body.cautruc;
-        bds.vitri = req.body.vitri;
-        bds.chusohuu = req.body.chusohuu;
-        bds.trangthai = req.body.trangthai;
-        bds.lienhe = req.body.lienhe;
-
-        bds.save(function saveBds(err) {
-            if (err) {
-                console.log(err);
-            }
-            res.redirect('/Manager/bds-profile/' + bdsId);
-
-        });
-    });
-});
+router.post("/edit-bds/:id", upload.array("multiple_image", 10),user_controller.edit);
 router.get('/bds-profile/:id', function getBdsProfile(req, res, next) {
     var bdsId = req.params.id;
     Bds.findById(bdsId, function getBds(err, bds) {
@@ -129,7 +109,7 @@ router.get('/bds-profile/:id', function getBdsProfile(req, res, next) {
         res.render('Manager/bdsProfile', {
             title: 'bds Profile',
             bdss: bds,
-            csrfToken: req.csrfToken(),
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             moment: moment,
             userName: req.session.user.name
         });
@@ -144,7 +124,7 @@ router.get('/edit-bds/:id', function editbds(req, res, next) {
         }
         res.render('Manager/editBds', {
             title: 'Edit Bds',
-            csrfToken: req.csrfToken(),
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             bdss: bds,
             moment: moment,
             message: '',
@@ -155,7 +135,8 @@ router.get('/edit-bds/:id', function editbds(req, res, next) {
     });
 
 });
-/////////////////
+//////////////////////////////////////////////////////////////////////
+
 
 router.get('/view-employees', function viewEmployees(req, res) {
 
@@ -242,9 +223,6 @@ router.get('/view-employees', function viewEmployees(req, res) {
 
 
 });
-
-
-
 router.get('/all-employee-skills/:id', function viewAllEmployeeSkills(req, res, next) {
 
     var employeeId = req.params.id;

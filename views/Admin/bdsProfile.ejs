@@ -10,98 +10,8 @@
     <link href="/stylesheets/bootstrap-select.min.css" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link href="/stylesheets/simple-sidebar.css" rel="stylesheet">
-    <style>
-        /* Make the image fully responsive */
-        .carousel-inner img {
-          width: 300px;
-          height: 400px;
-          object-fit: cover;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        .carousel-inner{
-          width: 600px;
-          height: 400px;
-          background-color:white;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        </style>
-<style>
-  #myImg {
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-}
-#myImg:hover {opacity: 0.7;}
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 10; /* Sit on top */
-    padding: 200px; /* Location of the box */
-    left: 0;
-    top: 0;
-    right: 20;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 60%;
-    max-width: 100%;
-}
-#caption {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 300px;
-    text-align: center;
-    color: #ccc;
-    padding: 10px 0;
-    height: 150px;
-}
-@-webkit-keyframes zoom {
-    from {-webkit-transform:scale(1)}
-    to {-webkit-transform:scale(2)}
-}
- 
-@keyframes zoom {
-    from {transform:scale(0.4)}
-    to {transform:scale(1)}
-}
-@-webkit-keyframes zoom-out {
-    from {transform:scale(1)}
-    to {transform:scale(0)}
-}
-@keyframes zoom-out {
-    from {transform:scale(1)}
-    to {transform:scale(0)}
-}
-.modal-content, #caption {
-    -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.6s;
-    animation-name: zoom;
-    animation-duration: 0.6s;
-}
-.out {
-  animation-name: zoom-out;
-  animation-duration: 0.6s;
-}
-@media only screen and (max-width: 300px){
-    .modal-content {
-        width: 100%;
-    }
-}
-</style>
+    <link rel='stylesheet' href='/stylesheets/zoom.css'/>
+
         
 </head>
 <body>
@@ -208,92 +118,301 @@
                             
                             </tbody>
                           </table>
-                          <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                            
-                            <ol class="carousel-indicators">
-                              <%if (bdss.multiple_image.length > 0) { %>
-                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 1) { %>
-                                <li data-target="#myCarousel" data-slide-to="1"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 2) { %>
-                                <li data-target="#myCarousel" data-slide-to="2"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 3) { %>
-                                <li data-target="#myCarousel" data-slide-to="3"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 4) { %>
-                                <li data-target="#myCarousel" data-slide-to="4"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 5) { %>
-                                <li data-target="#myCarousel" data-slide-to="5"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 6) { %>
-                                <li data-target="#myCarousel" data-slide-to="6"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 7) { %>
-                                <li data-target="#myCarousel" data-slide-to="7"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 8) { %>
-                                <li data-target="#myCarousel" data-slide-to="8"></li>
-                              <% } %>
-                              <%if (bdss.multiple_image.length > 9) { %>
-                                <li data-target="#myCarousel" data-slide-to="9"></li>
-                              <% } %>
-                            </ol>
-                            
+                          <div id="myCarousel" class="carousel slide" data-ride="carousel">                      
                             <div class="carousel-inner">
                               <%if (bdss.multiple_image.length > 0) { %>
                                 <div class="item active" >
-                                  <img id="myImg" src="<%= bdss.multiple_image[0] %>" alt="Smile" id="imgSmile" >
+                                  <img id="myImg" src="<%= bdss.multiple_image[0] %>">
                                 </div>
+                                <div id="myModal" class="modal">
+                                  <img class="modal-content" id="img01">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal = document.getElementById('myModal');
+                                var img = document.getElementById('myImg');
+                                var modalImg = document.getElementById("img01");
+                                var captionText = document.getElementById("caption");
+                                img.onclick = function(){
+                                    modal.style.display = "block";
+                                    modalImg.src = this.src;
+                                    modalImg.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal.onclick = function() {
+                                img01.className += " out";
+                                setTimeout(function() {
+                                  modal.style.display = "none";
+                                  img01.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
                               <% } %>
                                
                               <%if (bdss.multiple_image.length > 1) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[1] %>">
+                                  <img id="myImg2" src="<%= bdss.multiple_image[1] %>">
                                 </div>
+
+                                <div id="myModal2" class="modal2">
+                                  <img class="modal-content" id="img02">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal2 = document.getElementById('myModal2');
+                                var img2 = document.getElementById('myImg2');
+                                var modalImg2 = document.getElementById("img02");
+                                var captionText = document.getElementById("caption");
+                                img2.onclick = function(){
+                                    modal2.style.display = "block";
+                                    modalImg2.src = this.src;
+                                    modalImg2.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal2.onclick = function() {
+                                img02.className += " out";
+                                setTimeout(function() {
+                                  modal2.style.display = "none";
+                                  img02.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
                               <% } %>
+
                               <%if (bdss.multiple_image.length > 2) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[2] %>" >
+                                  <img id="myImg3" src="<%= bdss.multiple_image[2] %>" >
                                 </div>
+
+                                <div id="myModal3" class="modal3">
+                                  <img class="modal-content" id="img03">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal3 = document.getElementById('myModal3');
+                                var img3 = document.getElementById('myImg3');
+                                var modalImg3 = document.getElementById("img03");
+                                var captionText = document.getElementById("caption");
+                                img3.onclick = function(){
+                                    modal3.style.display = "block";
+                                    modalImg3.src = this.src;
+                                    modalImg3.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal3.onclick = function() {
+                                img03.className += " out";
+                                setTimeout(function() {
+                                  modal3.style.display = "none";
+                                  img03.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
+
                               <% } %>
                               <%if (bdss.multiple_image.length > 3) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[3] %>" >
+                                  <img id="myImg4" src="<%= bdss.multiple_image[3] %>" >
                                 </div>
+
+                                <div id="myModal4" class="modal4">
+                                  <img class="modal-content" id="img04">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal4 = document.getElementById('myModal4');
+                                var img4 = document.getElementById('myImg4');
+                                var modalImg4 = document.getElementById("img04");
+                                var captionText = document.getElementById("caption");
+                                img4.onclick = function(){
+                                    modal4.style.display = "block";
+                                    modalImg4.src = this.src;
+                                    modalImg4.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal4.onclick = function() {
+                                img04.className += " out";
+                                setTimeout(function() {
+                                  modal4.style.display = "none";
+                                  img04.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
+
                               <% } %>
                               <%if (bdss.multiple_image.length > 4) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[4] %>" >
+                                  <img id="myImg5" src="<%= bdss.multiple_image[4] %>" >
                                 </div>
+
+                                <div id="myModal5" class="modal5">
+                                  <img class="modal-content" id="img05">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal5 = document.getElementById('myModal5');
+                                var img5 = document.getElementById('myImg5');
+                                var modalImg5 = document.getElementById("img05");
+                                var captionText = document.getElementById("caption");
+                                img5.onclick = function(){
+                                    modal5.style.display = "block";
+                                    modalImg5.src = this.src;
+                                    modalImg5.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal5.onclick = function() {
+                                img05.className += " out";
+                                setTimeout(function() {
+                                  modal5.style.display = "none";
+                                  img05.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
+
                               <% } %>
                               <%if (bdss.multiple_image.length > 5) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[5] %>" >
+                                  <img id="myImg6" src="<%= bdss.multiple_image[5] %>" >
                                 </div>
+
+                                <div id="myModal6" class="modal6">
+                                  <img class="modal-content" id="img06">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal6 = document.getElementById('myModal6');
+                                var img6 = document.getElementById('myImg6');
+                                var modalImg6 = document.getElementById("img06");
+                                var captionText = document.getElementById("caption");
+                                img6.onclick = function(){
+                                    modal6.style.display = "block";
+                                    modalImg6.src = this.src;
+                                    modalImg6.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal6.onclick = function() {
+                                img06.className += " out";
+                                setTimeout(function() {
+                                  modal6.style.display = "none";
+                                  img06.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
                               <% } %>
                               <%if (bdss.multiple_image.length > 6) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[6] %>" >
+                                  <img id="myImg7" src="<%= bdss.multiple_image[6] %>" >
                                 </div>
+
+                                <div id="myModal7" class="modal7">
+                                  <img class="modal-content" id="img07">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal7 = document.getElementById('myModal7');
+                                var img7 = document.getElementById('myImg7');
+                                var modalImg7 = document.getElementById("img07");
+                                var captionText = document.getElementById("caption");
+                                img7.onclick = function(){
+                                    modal7.style.display = "block";
+                                    modalImg7.src = this.src;
+                                    modalImg7.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal7.onclick = function() {
+                                img07.className += " out";
+                                setTimeout(function() {
+                                  modal7.style.display = "none";
+                                  img07.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
                               <% } %>
                               <%if (bdss.multiple_image.length > 7) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[7] %>" >
+                                  <img id="myImg8" src="<%= bdss.multiple_image[7] %>" >
                                 </div>
+
+                                <div id="myModal8" class="modal8">
+                                  <img class="modal-content" id="img08">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal8 = document.getElementById('myModal8');
+                                var img8 = document.getElementById('myImg8');
+                                var modalImg8 = document.getElementById("img08");
+                                var captionText = document.getElementById("caption");
+                                img8.onclick = function(){
+                                    modal8.style.display = "block";
+                                    modalImg8.src = this.src;
+                                    modalImg8.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal8.onclick = function() {
+                                img08.className += " out";
+                                setTimeout(function() {
+                                  modal8.style.display = "none";
+                                  img08.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
                               <% } %>
                               <%if (bdss.multiple_image.length > 8) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[8] %>" >
+                                  <img id="myImg9" src="<%= bdss.multiple_image[8] %>" >
                                 </div>
+
+                                <div id="myModal9" class="modal9">
+                                  <img class="modal-content" id="img09">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal9 = document.getElementById('myModal9');
+                                var img9 = document.getElementById('myImg9');
+                                var modalImg9 = document.getElementById("img09");
+                                var captionText = document.getElementById("caption");
+                                img9.onclick = function(){
+                                    modal9.style.display = "block";
+                                    modalImg9.src = this.src;
+                                    modalImg9.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal9.onclick = function() {
+                                img09.className += " out";
+                                setTimeout(function() {
+                                  modal9.style.display = "none";
+                                  img09.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
                               <% } %>
                               <%if (bdss.multiple_image.length > 9) { %>
                                 <div class="item item">
-                                  <img id="myImg" src="<%= bdss.multiple_image[9] %>" >
+                                  <img id="myImg0" src="<%= bdss.multiple_image[9] %>" >
                                 </div>
+
+                                <div id="myModal0" class="modal0">
+                                  <img class="modal-content" id="img00">
+                               <div id="caption"></div>
+                               </div>
+                               <script>
+                                var modal0 = document.getElementById('myModal0');
+                                var img0 = document.getElementById('myImg0');
+                                var modalImg0 = document.getElementById("img00");
+                                var captionText = document.getElementById("caption");
+                                img0.onclick = function(){
+                                    modal0.style.display = "block";
+                                    modalImg0.src = this.src;
+                                    modalImg0.alt = this.alt;
+                                    captionText.innerHTML = this.alt;
+                                }
+                                modal0.onclick = function() {
+                                img00.className += " out";
+                                setTimeout(function() {
+                                  modal0.style.display = "none";
+                                  img00.className = "modal-content";
+                                }, 400);
+                                }  
+                               </script>
                               <% } %>
                             </div>
                            
@@ -312,14 +431,6 @@
         </div>
     </div>
 </div>
-<div>
-  <!-- Image Zoom HTML -->   
-<!-- The Modal -->
-<div id="myModal" class="modal">
-   <img class="modal-content" id="img01">
-<div id="caption"></div>
-</div>
-</div>
 <!-- /#wrapper -->
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
@@ -327,28 +438,7 @@
 <script src="/javascripts/sidebar_menu.js"></script>
 <script src="/javascripts/bootstrap-select.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-<script>
-  // Get the modal
-  var modal = document.getElementById('myModal');
-  // Get the image and insert it inside the modal - use its "alt" text as a caption
-  var img = document.getElementById('myImg');
-  var modalImg = document.getElementById("img01");
-  var captionText = document.getElementById("caption");
-  img.onclick = function(){
-      modal.style.display = "block";
-      modalImg.src = this.src;
-      modalImg.alt = this.alt;
-      captionText.innerHTML = this.alt;
-  }
-  // When the user clicks on <span> (x), close the modal
-  modal.onclick = function() {
-      img01.className += " out";
-      setTimeout(function() {
-         modal.style.display = "none";
-         img01.className = "modal-content";
-       }, 400);
-   }    
-</script>
+
 
 <script>
   $('.carousel').carousel({

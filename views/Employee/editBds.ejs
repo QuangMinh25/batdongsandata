@@ -53,7 +53,7 @@
                                         class="fa fa-plus fa-stack-1x "></i></span>Thêm dự án</a></li>
                 </ul>
             </li>
-
+    
             <li>
                 <a href="/employee/applied-leaves"><span class="fa-stack fa-lg pull-left"><i
                                 class="fa fa-dashboard fa-stack-1x "></i></span> Xem đơn xin nghỉ</a>
@@ -83,7 +83,7 @@
                 <div class="col-lg-12">
                     <h1>Sửa thông tin dự án</h1>
                     <div id="menu1" style="height:717px;overflow: auto;">
-                        <form action="/employee/edit-bds/<%= bdss._id %>" id="form1" method="post">
+                        <form action="/employee/edit-bds/<%= bdss._id %>" id="form1" enctype="multipart/form-data" method="post">
 
                           
                             <div class="form-group">
@@ -162,8 +162,10 @@
                                 <input type="text" required="required" class="form-control" id="lienhe" name="lienhe"
                                 value="<%= bdss.lienhe %>">
                             </div>
-
-                          
+                            <div class="form-group">
+                                <label for="multiple_image"><i class="fa fa-file-image-o" aria-hidden="true"></i> Hình ảnh:</label>
+                                <input type="file" name="multiple_image" accept='image/*' multiple required="required" id="multiple_image" >
+                            </div>
                             </div>
                             </br>
                             </br>
@@ -211,85 +213,7 @@
     }
 
 </script>
-<!-- <script>
-    $(document).ready(function () {
-        $('.selectpicker').selectpicker();
-
-        var box1height = $('#menu1').height();
-        // Set box2 height equal to box1
-        $('#sidebar-wrapper').height(box1height * 1.2);
-        for (i = new Date().getFullYear(); i > 1950; i--) {
-            $('#year').append($('<option />').val(i).html(i));
-        }
-
-    });
-</script> -->
 </body>
 
-<div id="myModal2" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <form method="post" action="/employee/mark-attendance">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Mark Attendance</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to mark attendance.</p>
-                </div>
-                <div class="modal-footer">
-                    
-                    <button type="reset" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-default">Yes</button>
-                </div>
 
-            </div>
-        </form>
-    </div>
-</div>
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <form method="post" action="/employee/view-attendance">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Select Month/Year</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="Month">Month:</label>
-                        <select class="form-control" id="month" name="month">
-                            <option value="1">January</option>
-                            <option value="2">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="year">Year:</label>
-                        <select class="form-control" id="year" name="year">
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    
-                    <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-default">View</button>
-                </div>
-            </form>
-        </div>
-
-    </div>
-</div>
 </html>

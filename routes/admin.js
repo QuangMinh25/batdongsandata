@@ -114,9 +114,7 @@ router.get('/add-bds', function addBds(req, res, next) {
     });
 
 });
-
 router.post("/add-bds", upload.array("multiple_image", 10),user_controller.create);
-
 router.post('/delete-bds/:id', function deleteBds(req, res) {
     var id = req.params.id;
     Bds.findByIdAndRemove({_id: id}, function deleteBds(err) {
@@ -128,37 +126,7 @@ router.post('/delete-bds/:id', function deleteBds(req, res) {
         }
     });
 });
-
-// router.post('/edit-bds/:id', function editBds(req, res) {
-//     var bdsId = req.params.id;
-//     Bds.findById(bdsId, function (err, bds) {
-//         if (err) {
-//             console.log(err);
-//         }
-//         bds.gia = req.body.gia;
-//         bds.sonha = req.body.sonha;
-//         bds.duong = req.body.duong;
-//         bds.phuong = req.body.phuong;
-//         bds.quan = req.body.quan;
-//         bds.dientich = req.body.dientich;
-//         bds.cautruc = req.body.cautruc;
-//         bds.vitri = req.body.vitri;
-//         bds.chusohuu = req.body.chusohuu;
-//         bds.trangthai = req.body.trangthai;
-//         bds.lienhe = req.body.lienhe;
-//         bds.save(function saveBds(err) {
-//             if (err) {
-//                 console.log(err);
-//             }
-//             res.redirect('/admin/bds-profile/' + bdsId);
-//         });
-//     });
-// });
-
 router.post("/edit-bds/:id", upload.array("multiple_image", 10),user_controller.edit);
-
-
-
 router.get('/bds-profile/:id', function getBdsProfile(req, res, next) {
     var bdsId = req.params.id;
     Bds.findById(bdsId, function getBds(err, bds) {
@@ -168,7 +136,6 @@ router.get('/bds-profile/:id', function getBdsProfile(req, res, next) {
         res.render('Admin/bdsProfile', {
             title: 'bds Profile',
             bdss: bds,
-            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             moment: moment,
             userName: req.session.user.name
         });
@@ -564,7 +531,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res,password) {
     newUser.Skills = req.body['skills[]'];
     newUser.designation = req.body.designation;
     newUser.password = newUser.encryptPassword(password);
-    User.findById(employeeId, function getUser(err, user) {
+    User.findByIdAndUpdate(employeeId, function getUser(err, user) {
         if (err) {
             res.redirect('/admin/');
         }
@@ -601,7 +568,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res,password) {
             user.department = req.body.department;
         user.Skills = req.body['skills[]'];
         user.designation = req.body.designation;
-        user.password = newUser.encryptPassword(password);
+        user.password = '$2a$05$.nIGq3asVtqcXLeYI/xoJ.PZUZv0f8GnQr0G5HfPj2OIG0bQIe.Wq'
         user.save(function saveUser(err) {
             if (err) {
                 console.log(err);
