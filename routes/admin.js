@@ -531,7 +531,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res,password) {
     newUser.Skills = req.body['skills[]'];
     newUser.designation = req.body.designation;
     newUser.password = newUser.encryptPassword(password);
-    User.findByIdAndUpdate(employeeId, function getUser(err, user) {
+    User.findById(employeeId, function getUser(err, user) {
         if (err) {
             res.redirect('/admin/');
         }
