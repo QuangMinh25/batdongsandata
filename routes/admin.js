@@ -530,7 +530,6 @@ router.post('/edit-employee/:id', function editEmployee(req, res,password) {
         newUser.department = req.body.department;
     newUser.Skills = req.body['skills[]'];
     newUser.designation = req.body.designation;
-    newUser.password = newUser.encryptPassword(password);
     User.findById(employeeId, function getUser(err, user) {
         if (err) {
             res.redirect('/admin/');
@@ -543,7 +542,6 @@ router.post('/edit-employee/:id', function editEmployee(req, res,password) {
                 if (user) {
                     res.render('Admin/editEmployee', {
                         title: 'Edit Employee',
-                        //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
                         employee: newUser,
                         moment: moment,
                         message: 'Email is already in use', userName: req.session.user.name
@@ -568,7 +566,7 @@ router.post('/edit-employee/:id', function editEmployee(req, res,password) {
             user.department = req.body.department;
         user.Skills = req.body['skills[]'];
         user.designation = req.body.designation;
-        user.password = '$2a$05$.nIGq3asVtqcXLeYI/xoJ.PZUZv0f8GnQr0G5HfPj2OIG0bQIe.Wq'
+        user.password = req.body.
         user.save(function saveUser(err) {
             if (err) {
                 console.log(err);
