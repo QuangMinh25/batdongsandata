@@ -632,6 +632,7 @@ router.post('/edit-employee-project/:id', function editEmployeeProject(req, res)
 router.post('/delete-employee/:id', function deleteEmployee(req, res) {
     var id = req.params.id;
     User.findByIdAndRemove({_id: id}, function deleteUser(err) {
+    
         if (err) {
             console.log('unable to delete employee');
         }
