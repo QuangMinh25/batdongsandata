@@ -242,27 +242,23 @@
 
                                 <select class="form-control" id="designation" name="designation">
                                     <option value="<%= user.designation %>"><%= user.designation %></option>
-                                    <% if (user.designation != "N/A"){ %>
-                                    <option value="N/A">N/A</option>
-                                    <% } %>
                                     <% if (user.designation != "Nhân viên"){ %>
                                     <option value="Nhân viên">Nhân viên</option>
                                     <% } %>
-                                    <% if (user.designation != "Project Manager"){ %>
+                                    <!-- <% if (user.designation != "Project Manager"){ %>
                                     <option value="Project Manager">Project Manager</option>
                                     <% } %>
                                     <% if (user.designation != "Accounts Manager"){ %>
                                     <option value="Accounts Manager">Accounts Manager</option>
-                                    <% } %>
+                                    <% } %> -->
                                 </select>
 
                                 <% }else{ %>
 
                                 <select class="form-control" id="designation" name="designation">
-                                    <option value="N/A">N/A</option>
                                     <option value="Nhân viên">Nhân viên</option>
-                                    <option value="Project Manager">Project Manager</option>
-                                    <option value="Accounts Manager">Accounts Manager</option>
+                                    <!-- <option value="Project Manager">Project Manager</option>
+                                    <option value="Accounts Manager">Accounts Manager</option> -->
                                 </select>
                                 <% } %>
                             </div>

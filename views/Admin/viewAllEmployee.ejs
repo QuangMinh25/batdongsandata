@@ -129,28 +129,28 @@
                                             <td style="padding: 0%;">
                                                 <form method="get" action="/admin/employee-profile/<%= item._id %>">
                                                     <button type="submit"><i class="fa fa-eye"
-                                                                             title="View Employee Details"
+                                                                             title="Xem hồ sơ nhân viên"
                                                                              aria-hidden="true"></i></button>
                                                 </form>
                                             </td>
                                             <td style="padding: 0%;">
                                                 <form method="get" action="/admin/edit-employee/<%= item._id %>">
                                                     <button type="submit"><i class="fa fa-pencil-square "
-                                                                             title="Edit Employee's Profile"
+                                                                             title="Cập nhật thông tin nhân viên"
                                                                              aria-hidden="true"></i></button>
                                                 </form>
                                             </td>
                                             <td style="padding: 0%;">
                                                 <button data-toggle="modal" class="delete-button" id="<%= item._id %>"
                                                         data-target="#myModal1"><i class="fa fa-trash "
-                                                                                   title="Delete Employee"
+                                                                                   title="Xóa nhân viên"
                                                                                    aria-hidden="true"></i></button>
                                             </td>
                                             <% if(item.type != "accounts_manager"){ %>
                                             <td style="padding: 0%;">
                                                 <form method="get" action="/admin/add-employee-project/<%= item._id %>">
                                                     <button type="submit"><i class="fa fa-plus"
-                                                                             title="Add Employee Project"
+                                                                             title="Thêm dự án của nhân viên"
                                                                              aria-hidden="true"></i></button>
                                                 </form>
                                             </td>
@@ -158,16 +158,14 @@
                                                 <form method="get"
                                                       action="/admin/all-employee-projects/<%= item._id %>">
                                                     <button type="submit"><i class="fa fa-tasks"
-                                                                             title="View Employee Projects"
+                                                                             title="Xem dự án của nhân viên"
                                                                              aria-hidden="true"></i></button>
                                                 </form>
                                             </td>
                                             <td style="padding: 0%;">
                                                 <form method="get"
                                                       action="/admin/changePassword/<%= item._id %>">
-                                                    <button type="submit"><i class="fa fa-tasks"
-                                                                             title="doi pass"
-                                                                             aria-hidden="true"></i></button>
+                                                    <button type="submit"><i class="fa fa-key" title="Đổi Mật Khẩu" aria-hidden="true"></i></button>
                                                 </form>
                                             </td>
                                             <% } %>

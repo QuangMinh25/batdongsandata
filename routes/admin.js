@@ -651,8 +651,17 @@ router.post('/edit-employee-project/:id', function editEmployeeProject(req, res)
 
 router.post('/delete-employee/:id', function deleteEmployee(req, res) {
     var id = req.params.id;
+    var employeeId = req.params.id;
+    var applicantID = req.params.id;
     User.findByIdAndRemove({_id: id}, function deleteUser(err) {
-    
+    Leave.deleteMany({ applicantID: applicantID }, function (err) {
+        if(err) console.log(err);
+        console.log("Successful deletion");
+      });
+    Project.deleteMany({ employeeId: employeeId }, function (err) {
+        if(err) console.log(err);
+        console.log("Successful deletion");
+      });
         if (err) {
             console.log('unable to delete employee');
         }
