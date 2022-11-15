@@ -168,16 +168,13 @@ router.get('/edit-bds/:id', function editbds(req, res, next) {
 router.get('/add-employee', function addEmployee(req, res, next) {
     var messages = req.flash('error');
     var newUser = new User();
-
     res.render('Admin/addEmployee', {
         title: 'Add Employee',
-        // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
         user: config_passport.User,
         messages: messages,
         hasErrors: messages.length > 0,
         userName: req.session.user.name
     });
-
 });
 
 router.get('/all-employee-projects/:id', function getAllEmployeePojects(req, res, next) {
@@ -327,7 +324,6 @@ router.get('/edit-employee-project/:id', function editEmployeeProject(req, res, 
         }
         res.render('Admin/editProject', {
             title: 'Edit Employee',
-            //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             project: project,
             moment: moment,
             message: '',
@@ -349,7 +345,6 @@ router.get('/add-employee-project/:id', function addEmployeeProject(req, res, ne
         }
         res.render('Admin/addProject', {
             title: 'Add Employee Project',
-            //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
             employee: user,
             moment: moment,
             message: '',
@@ -494,7 +489,33 @@ router.post('/add-employee', passport.authenticate('local.add-employee', {
     failureFlash: true,
 }));
 
+////////////////////////////////////////////////////////////////////////////////
 
+router.get('/changePassword/:id', function changePassword(req, res, next) {
+    var messages = req.flash('error');
+    var newUser = new User();
+    var employeeId = req.params.id;
+    User.findById(employeeId, function getUser(err, user) {
+        if (err) {
+            res.redirect('/admin/');
+        }
+    res.render('Admin/changePassword', {
+        title: 'Change Password',
+        employee: user,
+        user: config_passport.User,
+        messages: messages,
+        hasErrors: messages.length > 0,
+        userName: req.session.user.name
+    });
+});
+});
+router.post('/changePassword/:id', passport.authenticate('local.changePassword', {
+    successRedirect: '/admin/redirect-employee-profile',
+    failureRedirect: '/admin/changePassword/:id',
+    failureFlash: true,
+}));
+
+//////////////////////////////////////////////////////////////////////////
 router.post('/respond-application', function respondApplication(req, res) {
 
     Leave.findById(req.body.leave_id, function getLeave(err, leave) {
@@ -511,7 +532,7 @@ router.post('/respond-application', function respondApplication(req, res) {
 });
 
 
-router.post('/edit-employee/:id', function editEmployee(req, res,password) {
+router.post('/edit-employee/:id', function editEmployee(req, res) {
     var employeeId = req.params.id;
     var newUser = new User();
     newUser.email = req.body.email;
@@ -566,7 +587,6 @@ router.post('/edit-employee/:id', function editEmployee(req, res,password) {
             user.department = req.body.department;
         user.Skills = req.body['skills[]'];
         user.designation = req.body.designation;
-        user.password = req.body.
         user.save(function saveUser(err) {
             if (err) {
                 console.log(err);

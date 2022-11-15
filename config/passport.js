@@ -68,6 +68,35 @@ passport.use('local.add-employee', new LocalStrategy({
     });
 }));
 
+// //////////////////////////////////////////////////////////////////////
+passport.use('local.changePassword', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, function (req, email, password, done,res) {
+    req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+    req.checkBody('password', 'Invalid password').notEmpty().isLength({min: 6});
+    var employeeId = req.params.id;
+    User.findById(employeeId, function getUser(err, user) {
+        user.email = req.body.email;
+        user.name = req.body.name,
+            user.dateOfBirth = new Date(req.body.DOB),
+            user.contactNumber = req.body.number,
+            user.department = req.body.department;
+        user.Skills = req.body['skills[]'];
+        user.designation = req.body.designation;
+        user.password = user.encryptPassword(password);
+        user.save(function saveUser(err) {
+            if (err) {
+                console.log(err);
+            }
+            return done(null, user);
+
+        });
+    });
+}));
+////////////////////////////////////////////////////////////////////////
+
 
 
 passport.use('local.signin', new LocalStrategy({
