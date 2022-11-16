@@ -56,6 +56,16 @@
                                       class="fa fa-plus fa-stack-1x "></i></span>Thêm nhân viên</a></li>
               </ul>
           </li>
+            <li>
+            <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-male fa-stack-1x "></i></span> Khách Hàng</a>
+            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                <li><a href="/admin/view-all-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả khách hàng</a></li>
+                <li><a href="/admin/add-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-plus fa-stack-1x "></i></span>Thêm khách hàng</a></li>
+            </ul>
+        </li>
           <li>
               <a href="/admin/leave-applications"><span class="fa-stack fa-lg pull-left"><i
                               class="fa fa-envelope-square fa-stack-1x "></i></span> Đơn xin nghỉ phép</a></li>
@@ -90,14 +100,14 @@
                             <label for="status"><h4 style="font-size: x-large">Status:</h4></label>
                             <select class="form-control" id="status" name="status">
                                 <option value="<%=leave.adminResponse%>"><%=leave.adminResponse%></option>
-                                <% if(leave.adminResponse!="Pending"){%>
-                                <option value="Pending">Chưa giải quyết</option>
+                                <% if(leave.adminResponse!="Chưa giải quyết"){%>
+                                <option value="Chưa giải quyết">Chưa giải quyết</option>
                                 <%}%>
-                                <% if(leave.adminResponse!="Approved"){%>
-                                <option value="Approved">Đã được phê duyệt</option>
+                                <% if(leave.adminResponse!="Đã được phê duyệt"){%>
+                                <option value="Đã được phê duyệt">Đã được phê duyệt</option>
                                 <%}%>
-                                <% if(leave.adminResponse!="Disapproved"){%>
-                                <option value="Disapproved">Bị từ chối</option>
+                                <% if(leave.adminResponse!="Bị từ chối"){%>
+                                <option value="Bị từ chối">Bị từ chối</option>
                                 <%}%>
 
                             </select>
@@ -122,18 +132,7 @@
 <script src="/javascripts/sidebar_menu.js"></script>
 <script src="/javascripts/bootstrap-select.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        var box1height =  $('#menu1').height();
-        // Set box2 height equal to box1
-        $('#sidebar-wrapper').height(box1height*1.1);
-        for (i = new Date().getFullYear(); i > 1950; i--)
-        {
-            $('#year').append($('<option />').val(i).html(i));
-        }
 
-    });
-</script>
 </body>
 <div id="myModal1" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -142,10 +141,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Confirmation</h4>
+                <h4 class="modal-title">Xác nhận</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to approve this application.</p>
+                <p>Bạn có chắc chắn muốn phê duyệt đơn này.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>

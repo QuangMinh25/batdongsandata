@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
 const Bds = require('../models/bds');
+const Customer = require('../models/customer');
 var Project = require('../models/project');
 var flash = require('connect-flash');
 // var //csrfToken: req.csrfToken(), = require('csurf');
@@ -83,7 +84,7 @@ var upload = multer({
     }
 });
 
-////////////////
+/////////////////////////////////////////////////////////////////
 router.get('/view-all-bds', function viewAllBds(req, res, next) {
     var bdsChunks = [];
     //find is asynchronous function
@@ -161,8 +162,96 @@ router.get('/edit-bds/:id', function editbds(req, res, next) {
     });
 
 });
-/////////////////
+///////////////////////////////////////////////////////////////////
+router.get('/view-all-customer', function viewAllCustomer(req, res, next) {
+    var customerChunks = [];
+    //find is asynchronous function
+    Customer.find({}).sort({_id: -1}).exec(function getCustomers(err, docs) {
+        for (var i = 0; i < docs.length; i++) {
+            customerChunks.push(docs[i]);
+        }
+        res.render('Admin/viewAllcustomer', {
+            title: 'Tất cả khách hàng',
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
+            customers: customerChunks,
+            userName: req.session.user.name
+        });
+    });
+});
 
+router.get('/add-customer', function addCustomer(req, res, next) {
+    res.render('Admin/addCustomer', {
+        title: 'Add Customer',
+        userName: req.session.user.name
+    });
+
+});
+
+router.post('/add-customer', function addCustomer(req, res) {
+    var newCustomer = new Customer();
+    newCustomer.hovaten = req.body.hovaten;
+    newCustomer.sodienthoai = req.body.sodienthoai;
+    newCustomer.diachi = req.body.diachi;
+    newCustomer.ghichu = req.body.ghichu;
+       
+    newCustomer.save(function saveCustomer(err) {
+        if (err) {
+            console.log(err);
+        }
+        res.redirect('/admin/view-all-customer');
+    });
+});
+router.post('/delete-customer/:id', function deleteCustomer(req, res) {
+    var id = req.params.id;
+    Customer.findByIdAndRemove({_id: id}, function deleteBds(err) {
+        if (err) {
+            console.log('unable to delete bds');
+        }
+        else {
+            res.redirect('/admin/view-all-customer');
+        }
+    });
+});
+
+router.get('/edit-customer/:id', function editCustomer(req, res, next) {
+    var customerId = req.params.id;
+    Customer.findById(customerId, function getCustomer(err, customer) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('Admin/editCustomer', {
+            title: 'Edit Customer',
+            project: customer,
+            moment: moment,
+            message: '',
+            userName: req.session.user.name
+        });
+    });
+});
+
+router.post('/edit-customer/:id', function editCustomer(req, res) {
+    var customerId = req.params.id;
+    var newCustomer = new Customer();
+    Customer.findById(customerId, function (err, customer) {
+        if (err) {
+            console.log(err);
+        }
+        customer.hovaten = req.body.hovaten;
+        customer.sodienthoai = req.body.sodienthoai;
+        customer.diachi = req.body.diachi;
+        customer.ghichu = req.body.ghichu;
+        customer.save(function saveProject(err) {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect('/admin/view-all-customer');
+
+        });
+    });
+
+});
+
+///////////////////////////////////////////////////////////////////
 
 
 router.get('/add-employee', function addEmployee(req, res, next) {

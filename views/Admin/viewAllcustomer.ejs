@@ -89,22 +89,15 @@
         <div class="container-fluid xyz">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Tất cả dự án</h1>
+                    <h1>Tất cả khách hàng</h1>
                     <div style="height:100%; overflow: auto">
                         <table id="example" class="display" cellspacing="0" style="height: 10%; overflow: auto;">
                             <thead>
                             <tr>
-                                <th>Giá</th>
-                                <th>Số nhà</th>
-                                <th>Đường</th>
-                                <th>Phường</th>
-                                <th>Quận</th>
-                                <th>Diện tích</th>
-                                <th>Cấu trúc</th>
-                                <th>Vị trí</th>
-                                <th>Chủ sở hửu</th>
-                                <th>Trạng thái</th>
-                                <th>Liên hệ</th>
+                                <th>Họ và tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Ghi chú</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -112,85 +105,45 @@
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Giá</th>
-                                <th>Số nhà</th>
-                                <th>Đường</th>
-                                <th>Phường</th>
-                                <th>Quận</th>
-                                <th>Diện tích</th>
-                                <th>Cấu trúc</th>
-                                <th>Vị trí</th>
-                                <th>Chủ sở hửu</th>
-                                <th>Trạng thái</th>
-                                <th>Liên hệ</th>
+                                <th>Họ và tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Ghi chú</th>
                                 <th hidden></th>
                                 <th hidden></th>
                                 <th hidden></th>
                             </tr>
                             </tfoot>
                             <tbody>
-                                <% bdss.forEach(function(item){ %>
+                                <% customers.forEach(function(item){ %>
 
                                     <tr>
-                                        <td><%= item.gia %></td>
-                                        <td><%= item.sonha %></td>
-                                    <td><%= item.duong %></td>
-                                    <td><% if(!item.phuong){%>
-                                        <!-- <%="N/A"%> -->
-                                        <%
-                                        }
-                                        else{%>
-                                        <%=item.phuong%>
-                                        <%}%></td>
-                                        <td><% if(!item.quan){%>
-                                            <!-- <%="N/A"%> -->
-                                            <%
-                                            }
-                                            else{%>
-                                            <%=item.quan%>
-                                            <%}%></td>
-                                       
-                                        <td><%= item.dientich %> m²</td>
-                                        <td><%= item.cautruc %></td>
-                                        <td><% if(!item.vitri){%>
-                                            <!-- <%="N/A"%> -->
-                                            <%
-                                            }
-                                            else{%>
-                                            <%=item.vitri%>
-                                            <%}%></td>
-                                        <td><%= item.chusohuu %></td>
-                                        <td><% if(!item.trangthai){%>
-                                                <!-- <%="N/A"%> -->
-                                                <%
-                                                }
-                                                else{%>
-                                                <%=item.trangthai%>
-                                                <%}%></td>
-                                            
-                                        <td><%= item.lienhe %></td>
+                                        <td><%= item.hovaten %></td>
+                                        <td><%= item.sodienthoai %></td>
+                                        <td><%= item.diachi %></td>
+                                        <td><%= item.ghichu %></td>
                                             
                                             <!-- nut -->
                                        
                                                 
                                                 <td style="padding: 0%;">
-                                                    <form method="get" action="/admin/bds-profile/<%= item._id %>">
+                                                    <form method="get" action="/admin/customer-profile/<%= item._id %>">
                                                         <button type="submit"><i class="fa fa-eye"
-                                                                                     title="Xem dự án"
+                                                                                     title="Xem khách hàng"
                                                                                      aria-hidden="true"></i></button>
                                                     </form>
                                                 </td>
                                                     <td style="padding: 0%; ">
-                                                        <form method="get" action="/admin/edit-bds/<%= item._id %>">
+                                                        <form method="get" action="/admin/edit-customer/<%= item._id %>">
                                                             <button type="submit"><i class="fa fa-pencil-square "
-                                                                                     title="Sửa dự án"
+                                                                                     title="Cập nhật thông tin khách hàng"
                                                                                      aria-hidden="true"></i></button>
                                                         </form>
                                                     </td>
                                                     <td style="padding: 0%;">
                                                         <button data-toggle="modal" class="delete-button" id="<%= item._id %>"
                                                                 data-target="#myModal1"><i class="fa fa-trash "
-                                                                                           title="Xóa dự án"
+                                                                                           title="Xóa khách hàng"
                                                                                            aria-hidden="true"></i></button>
                                                     </td>
                                               
@@ -219,7 +172,7 @@
 
 
 <script>
-    var bdsId;
+    var customerId;
     $(document).ready(function () {
         $("#example").on('click', '.deletemp', function () {
             $('#name').text($(this).parents().closest('tr').find('td:eq(0)').text());
@@ -228,8 +181,8 @@
         });
 
         $(document).on("click", ".delete-button", function () {
-            bdsId = (this.id);
-            document.getElementById("modal-delete-form").action = "/admin/delete-bds/" + bdsId;
+            customerId = (this.id);
+            document.getElementById("modal-delete-form").action = "/admin/delete-customer/" + customerId;
 
         });
 
@@ -280,18 +233,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title">Xóa dự án</h2>
+                    <h2 class="modal-title">Xóa khách hàng</h2>
                     <!--<h3 class="modal-title"><label id="name"></label></h3>
                     <h4 class="modal-title"><label id="email"></label></h4>-->
                 </div>
                 <div class="modal-body">
-                    <p>Bạn có muốn xóa dự án này không ?</p>
+                    <p>Bạn có muốn xóa khách hàng này không ?</p>
                 </div>
                 <div class="modal-footer">
 
                     
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-default">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                    <button type="submit" class="btn btn-default">Đồng ý</button>
                 </div>
             </div>
         </form>

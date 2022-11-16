@@ -70,6 +70,16 @@
                                       class="fa fa-plus fa-stack-1x "></i></span>Thêm nhân viên</a></li>
               </ul>
           </li>
+            <li>
+            <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-male fa-stack-1x "></i></span> Khách Hàng</a>
+            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                <li><a href="/admin/view-all-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả khách hàng</a></li>
+                <li><a href="/admin/add-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-plus fa-stack-1x "></i></span>Thêm khách hàng</a></li>
+            </ul>
+        </li>
           <li>
               <a href="/admin/leave-applications"><span class="fa-stack fa-lg pull-left"><i
                               class="fa fa-envelope-square fa-stack-1x "></i></span> Đơn xin nghỉ phép</a></li>
@@ -84,7 +94,7 @@
         <div class="container-fluid xyz">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Project Details</h1>
+                    <h1>Thêm dự án cho nhân viên</h1>
                     <div id="menu1" style="height:717px; overflow: auto;">
                         <form action="/admin/add-employee-project/<%= employee._id %>" id="form1" method="post">
                             <div class="form-group">
@@ -98,8 +108,8 @@
                             <div class="form-group">
                                 <label for="status">Trạng thái:</label>
                                 <select class="form-control" id="status" name="status">
-                                    <option value="Ongoing">Đang tiến hành</option>
-                                    <option value="Finished">Đã hoàn thành</option>
+                                    <option value="Đang tiến hành">Đang tiến hành</option>
+                                    <option value="Đã hoàn thành">Đã hoàn thành</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -154,19 +164,6 @@
             }
             return true;
         });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        var box1height = $('#menu1').height();
-        // Set box2 height equal to box1
-        $('#sidebar-wrapper').height(box1height * 1.22);
-
-        for (i = new Date().getFullYear(); i > 1950; i--) {
-
-            $('#year').append($('<option />').val(i).html(i));
-        }
-
     });
 </script>
 </body>

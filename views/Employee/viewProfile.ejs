@@ -86,35 +86,40 @@
                         <h1>Trang cá nhân</h1>
                         <br>
                         <form class="form-group-sm" action="/employee/view-all-projects" method="get">
-                            <h4>Họ và tên : <label id="name"><%= employee.name %></label></h4>
-                            <h4>Email : <label id="type"><%= employee.email %></label></h4>
-                            <h4>Ngày sinh : <label
-                                        id="dob"><%= moment(employee.dateOfBirth).format('MMMM Do YYYY') %></label></h4>
-                            <h4>Phòng làm việc : <label id="department"><%= employee.department %></label></h4>
-                            <h4>Chức vụ : <label id="designation"><%= employee.designation %></label></h4>
-                            <h4>Dự án : <label id="projects">
-                                    <button type="submit" class="form-control">Xem dự án</button>
-                                </label></h4>
-
-                            <% if(employee.Skills.length > 0){ %>
-
-                            <h4>Skills:</h4>
-                            <div style="height: 250px; overflow: auto;">
-                                <ul class="list-group" id="skills">
-                                    <%
-                                    employee.Skills.forEach(function(val){
-                                    if(val != ""){ %>
-                                    <li class="list-group-item"><%= val %></li>
-
-                                    <% }
-                                    }) %>
-
-                                </ul>
-                            </div>
-                            <% }else{ %>
-                            <h4>Kỹ năng : <label id="skills">N/A</label></h4>
-                            <% } %>
+                            <table table id="example" class="table" cellspacing="0" style="height: 10%; overflow: auto;">
+                                <thead class="table table-hover table-dark">
+                                  <tr class="info">
+                                    <th scope="col">Họ và tên</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Ngày sinh</th>
+                                    <th scope="col">Phòng làm việc</th>
+                                    <th scope="col">Chức vụ</th>
+                                    <th scope="col">Kỹ năng</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><%= employee.name %></td>
+                                    <td><%= employee.email %></td>
+                                    <td><%= moment(employee.dateOfBirth).format('MMMM Do YYYY') %></td>
+                                    <td><%= employee.department %></td>
+                                    <td><%= employee.designation %></td>
+                                    <td> <%
+                                        employee.Skills.forEach(function(val){
+                                        if(val != ""){ %>
+                                        <li class="list-group-item"><%= val %></li>
+    
+                                        <% }
+                                        }) %></td>
+                                  </tr>
+                                
+                                </tbody>
+                              </table>
+                              <h4>Dự án : <label id="projects">
+                                <button type="submit" class="form-control">Xem dự án</button>
+                            </label></h4>
                         </form>
+
                     </div>
                 </div>
             </div>

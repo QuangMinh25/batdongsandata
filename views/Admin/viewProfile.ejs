@@ -70,6 +70,16 @@
                                       class="fa fa-plus fa-stack-1x "></i></span>Thêm nhân viên</a></li>
               </ul>
           </li>
+            <li>
+            <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-male fa-stack-1x "></i></span> Khách Hàng</a>
+            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                <li><a href="/admin/view-all-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả khách hàng</a></li>
+                <li><a href="/admin/add-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-plus fa-stack-1x "></i></span>Thêm khách hàng</a></li>
+            </ul>
+        </li>
           <li>
               <a href="/admin/leave-applications"><span class="fa-stack fa-lg pull-left"><i
                               class="fa fa-envelope-square fa-stack-1x "></i></span> Đơn xin nghỉ phép</a></li>
@@ -85,47 +95,39 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div id="menu1" style="height:717px;">
-                        <h1>Hồ sơ</h1>
+                        <h1>Hồ sơ nhân viên</h1>
                         <br>
                         <form class="form-group-sm" action="/admin/view-all-projects" method="get">
-                            <h4>Họ và tên : <label id="name"><%= employee.name %></label></h4>
-                            <h4>Email : <label id="type"><%= employee.email %></label></h4>
-                            <h4>Ngày sinh : <label
-                                        id="dob"><%= moment(employee.dateOfBirth).format('MMMM Do YYYY') %></label></h4>
-                            <h4>Phòng làm việc : <label id="department"><% if(!employee.department){%>
-                                        <%="N/A"%>
-                                    <%
-                                    }
-                                    else{%>
-                            <%=employee.department%>
-                                    <%}%>
+                            <table table id="example" class="table" cellspacing="0" style="height: 10%; overflow: auto;">
+                                <thead class="table table-hover table-dark">
+                                  <tr class="info">
+                                    <th scope="col">Họ và tên</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Ngày sinh</th>
+                                    <th scope="col">Phòng làm việc</th>
+                                    <th scope="col">Chức vụ</th>
+                                    <th scope="col">Kỹ năng</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td><%= employee.name %></td>
+                                    <td><%= employee.email %></td>
+                                    <td><%= moment(employee.dateOfBirth).format('MMMM Do YYYY') %></td>
+                                    <td><%= employee.department %></td>
+                                    <td><%= employee.designation %></td>
+                                    <td> <%
+                                        employee.Skills.forEach(function(val){
+                                        if(val != ""){ %>
+                                        <li class="list-group-item"><%= val %></li>
+    
+                                        <% }
+                                        }) %></td>
+                                  </tr>
+                                
+                                </tbody>
+                              </table>
 
-                                    </label></h4>
-                            <h4>Chức vụ : <label id="designation"><% if(!employee.designation){%>
-                                    <%="N/A"%>
-                                    <%
-                                    }
-                                    else{%>
-                                    <%=employee.designation%>
-                                    <%}%></label></h4>
-
-                            <% if(employee.Skills.length > 0){ %>
-
-                            <h4>Kỹ năng:</h4>
-                            <div style="height: 250px; overflow: auto;">
-                                <ul class="list-group" id="skills">
-                                    <%
-                                    employee.Skills.forEach(function(val){
-                                    if(val != ""){ %>
-                                    <li class="list-group-item"><%= val %></li>
-
-                                    <% }
-                                    }) %>
-                                </ul>
-                            </div>
-                            <% }else{ %>
-                            <h4>Kỹ năng : <label id="skills">N/A</label></h4>
-                            <% } %>
                         </form>
                     </div>
                 </div>

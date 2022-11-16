@@ -65,6 +65,16 @@
                                       class="fa fa-plus fa-stack-1x "></i></span>Thêm nhân viên</a></li>
               </ul>
           </li>
+            <li>
+            <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-male fa-stack-1x "></i></span> Khách Hàng</a>
+            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                <li><a href="/admin/view-all-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả khách hàng</a></li>
+                <li><a href="/admin/add-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-plus fa-stack-1x "></i></span>Thêm khách hàng</a></li>
+            </ul>
+        </li>
           <li>
               <a href="/admin/leave-applications"><span class="fa-stack fa-lg pull-left"><i
                               class="fa fa-envelope-square fa-stack-1x "></i></span> Đơn xin nghỉ phép</a></li>
@@ -169,22 +179,22 @@
                                 <label for="designation">Chức vụ:</label>
                                 <select class="form-control" id="designation" name="designation">
                                     <option value="<%= employee.designation %>"><%= employee.designation %></option>
-                                    <% if (employee.designation != "N/A"){ %>
+                                    <!-- <% if (employee.designation != "N/A"){ %>
                                     <option value="N/A">N/A</option>
-                                    <% } %>
+                                    <% } %> -->
                                     <% if (employee.designation != "Nhân viên"){ %>
                                     <option value="Nhân viên">Nhân viên</option>
                                     <% } %>
-                                    <% if (employee.designation != "Project Manager"){ %>
+                                    <!-- <% if (employee.designation != "Project Manager"){ %>
                                     <option value="Project Manager">Project Manager</option>
                                     <% } %>
                                     <% if (employee.designation != "Accounts Manager"){ %>
                                     <option value="Accounts Manager">Accounts Manager</option>
-                                    <% } %>
+                                    <% } %> -->
                                 </select>
                             </div>
-                            <button type="button" onclick="history.go(-1);" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-default">Save Changes</button>
+                            <button type="button" onclick="history.go(-1);" class="btn btn-default">Trở về</button>
+                            <button type="submit" class="btn btn-default">Lưu thay đổi</button>
                         </form>
 
                     </div>

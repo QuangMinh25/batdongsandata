@@ -64,6 +64,16 @@
                                       class="fa fa-plus fa-stack-1x "></i></span>Thêm nhân viên</a></li>
               </ul>
           </li>
+            <li>
+            <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-male fa-stack-1x "></i></span> Khách Hàng</a>
+            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                <li><a href="/admin/view-all-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả khách hàng</a></li>
+                <li><a href="/admin/add-customer"><span class="fa-stack fa-lg pull-left"><i
+                                    class="fa fa-plus fa-stack-1x "></i></span>Thêm khách hàng</a></li>
+            </ul>
+        </li>
           <li>
               <a href="/admin/leave-applications"><span class="fa-stack fa-lg pull-left"><i
                               class="fa fa-envelope-square fa-stack-1x "></i></span> Đơn xin nghỉ phép</a></li>
@@ -81,21 +91,31 @@
                     <div id="menu1" style="height:717px;">
                         <h1>Thông tin dự án</h1>
                         <br>
-                        <form class="form-group-sm">
-                            <h4>Nhân viên: <label id="title"><%= employee.name %></label></h4>
-                            <h4>Tiêu đề : <label id="title"><%= project.title %></label></h4>
-                            <h4>Loại : <label id="type"><%= project.type %></label></h4>
-                            <h4>Trạng thái : <label id="status"><%= project.status %></label></h4>
-                            <h4>Ngày bắt đầu : <label
-                                        id="start"><%= moment(project.startDate).format('MMMM Do YYYY'); %></label></h4>
-                            <h4>Ngày kết thúc : <label
-                                        id="end"><%= moment(project.endDate).format('MMMM Do YYYY'); %></label></h4><br>
-                            <h4 style="font-size: x-large">Description:</h4>
-                            <div style="height: 250px; overflow: auto;">
-                                <p style="font-family: 'Arial Nova'; font-size: medium" id="description"
-                                   style="word-wrap: break-word;"><%= project.description; %></p>
-                            </div>
-                        </form>
+                        <table table id="example" class="table" cellspacing="0" style="height: 10%; overflow: auto;">
+                            <thead class="table table-hover table-dark">
+                              <tr class="info">
+                                <th scope="col">Nhân viên</th>
+                                <th scope="col">Tiêu đề</th>
+                                <th scope="col">Loại</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Ngày bắt đầu</th>
+                                <th scope="col">Ngày kết thúc</th>
+                                <th scope="col">Mô tả</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td><%= employee.name %></td>
+                                <td><%= project.title %></td>
+                                <td><%= project.type %></td>
+                                <td><%= project.status %></td>
+                                <td> <%= moment(project.startDate).format('MMMM Do YYYY'); %></td>
+                                <td> <%= moment(project.endDate).format('MMMM Do YYYY'); %></td>
+                                <td><%= project.description; %></td>
+                              </tr>
+                            
+                            </tbody>
+                          </table>
                     </div>
                 </div>
             </div>
@@ -111,17 +131,7 @@
 <script src="/javascripts/sidebar_menu.js"></script>
 <script src="/javascripts/bootstrap-select.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        var box1height = $('#menu1').height();
-        // Set box2 height equal to box1
-        $('#sidebar-wrapper').height(box1height * 1.2);
-        for (i = new Date().getFullYear(); i > 1950; i--) {
-            $('#year').append($('<option />').val(i).html(i));
-        }
 
-    });
-</script>
 </body>
 
 

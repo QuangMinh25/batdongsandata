@@ -83,22 +83,33 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div id="menu1">
-                        <h1>Project Details</h1>
+                        <h1>Chi tiết dự án</h1>
                         <br>
-                        <form class="form-group-sm">
-                            <h4>Tiêu đề : <label id="title"><%= project.title %></label></h4>
-                            <h4>Loại : <label id="type"><%= project.type %></label></h4>
-                            <h4>Trạng thái : <label id="status"><%= project.status %></label></h4>
-                            <h4>Ngày bắt đầu : <label
-                                        id="start"><%= moment(project.startDate).format('MMMM Do YYYY'); %></label></h4>
-                            <h4>Ngày kết thúc : <label
-                                        id="end"><%= moment(project.endDate).format('MMMM Do YYYY'); %></label></h4><br>
-                            <h4 style="font-size: x-large">Ghi chú:</h4>
-                            <div style="height: 250px; overflow: auto;">
-                                <p style="font-family: 'Arial Nova'; font-size: medium" id="description"
-                                   style="word-wrap: break-word;"><%= project.description; %></p>
-                            </div>
-                        </form>
+                        <table table id="example" class="table" cellspacing="0" style="height: 10%; overflow: auto;">
+                            <thead class="table table-hover table-dark">
+                              <tr class="info">
+                               
+                                <th scope="col">Tiêu đề</th>
+                                <th scope="col">Loại</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Ngày bắt đầu</th>
+                                <th scope="col">Ngày kết thúc</th>
+                                <th scope="col">Mô tả</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                
+                                <td><%= project.title %></td>
+                                <td><%= project.type %></td>
+                                <td><%= project.status %></td>
+                                <td> <%= moment(project.startDate).format('MMMM Do YYYY'); %></td>
+                                <td> <%= moment(project.endDate).format('MMMM Do YYYY'); %></td>
+                                <td><%= project.description; %></td>
+                              </tr>
+                            
+                            </tbody>
+                          </table>
                     </div>
                 </div>
             </div>

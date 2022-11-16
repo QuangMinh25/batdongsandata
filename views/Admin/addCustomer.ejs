@@ -12,6 +12,11 @@
     <link href="/stylesheets/simple-sidebar.css" rel="stylesheet">
 
 </head>
+<style>
+    .wrapper sidebar-wrapper{
+      height: 100%;
+  }
+  </style>
 <body>
 <nav class="navbar navbar-default no-margin">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +70,7 @@
                                       class="fa fa-plus fa-stack-1x "></i></span>Thêm nhân viên</a></li>
               </ul>
           </li>
-            <li>
+          <li>
             <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
                             class="fa fa-male fa-stack-1x "></i></span> Khách Hàng</a>
             <ul class="nav-pills nav-stacked" style="list-style-type:none;">
@@ -82,122 +87,54 @@
               <a href="/admin/view-profile"><span class="fa-stack fa-lg pull-left"><i
                               class="fa fa-user fa-stack-1x "></i></span>Trang cá nhân</a>
           </li>
-          </ul>
+        </ul>
     </div><!-- /#sidebar-wrapper -->
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <div class="container-fluid xyz">
             <div class="row">
                 <div class="col-lg-12">
-                    <% if(hasProject === 1){ %>
-                    <h1>Danh sách các dự án của nhân viên</h1>
-                    <h2>Nhân viên: <%= user.name %></h2>
-                    <div style="height:600px; overflow: auto">
-                        <table id="example" class="display" cellspacing="0" style="height: 10%; overflow: auto;">
-                            <thead>
-                            <tr>
-                                <th>Tiêu đề</th>
-                                <th>Loại</th>
-                                <th>Trạng thái</th>
-                                <th style="width: 50px"></th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Tiêu đề</th>
-                                <th>Loại</th>
-                                <th>Trạng thái</th>
-                             </tr>
-                            </tfoot>
-                            <tbody>
-                            <% projects.forEach(function(item){ %>
-                            <tr>
-                                <td><%= item.title %></td>
-                                <td><%= item.type %></td>
-                                <td><%= item.status %></td>
-                                <td>
-                                    <table cellspacing="0px">
-                                        <tr>
-                                            <td style="padding: 0%;">
-                                                <form method="get"
-                                                      action="/admin/employee-project-info/<%= item._id %>">
-                                                    <button type="submit"><i class="fa fa-eye"
-                                                                             title="View Projects's Details"
-                                                                             aria-hidden="true"></i></button>
-                                                </form>
-                                            </td>
-                                            <td style="padding: 0%;">
-                                                <form method="get"
-                                                      action="/admin/edit-employee-project/<%= item._id %>">
-                                                    <button type="submit"><i class="fa fa-pencil-square "
-                                                                             title="Edit Project's Details"
-                                                                             aria-hidden="true"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            <% }); %>
-                            </tbody>
-                        </table>
+                    <h1>Thêm khách hàng</h1>
+                    <div id="menu1" style="height:717px; overflow: auto;">
+                        <form action="/admin/add-customer" id="form1" method="post">
+                            <div class="form-group">
+                                <label for="hovaten">Họ và tên:</label>
+                                <input type="text" required="required" class="form-control" id="hovaten" name="hovaten">
+                            </div>
+                            <div class="form-group">
+                                <label for="sodienthoai">Số điện thoại:</label>
+                                <input type="number" required="required" class="form-control" id="sodienthoai" name="sodienthoai">
+                            </div>
+                            <div class="form-group">
+                                <label for="diachi">Địa chỉ:</label>
+                                <input type="text" required="required" class="form-control" id="diachi" name="diachi">
+                            </div>
+                            <div class="form-group">
+                                <label for="ghichu">Ghi chú:</label>
+                                <textarea required="required" class="form-control" style="resize: none" id="ghichu"
+                                          name="ghichu" rows="5" cols="60"></textarea></p>
+                            </div>
+                            
+                            <button type="button" onclick="history.go(-1);" class="btn btn-default">Trở về</button>
+                            <button type="submit" class="btn btn-default">Thêm khách hàng</button>
+                        </form>
+
                     </div>
-                    <% }else{ %>
-                    <p><%= user.name %> hiện tại không có dự án nào</p>
-                    <% } %>
                 </div>
             </div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->
 
-
 </div>
-<!-- /#wrapper -->
-<!-- jQuery -->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="/javascripts/sidebar_menu.js"></script>
 <script src="/javascripts/bootstrap-select.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-<script>
 
-    $(document).ready(function () {
-
-
-        $('#example').dataTable({
-            /* No ordering applied by DataTables during initialisation */
-            "order": []
-        });
-        for (i = new Date().getFullYear(); i > 1950; i--) {
-            $('#year').append($('<option />').val(i).html(i));
-        }
-
-        // Setup - add a text input to each footer cell
-        $('#example tfoot th').each(function () {
-            var title = $(this).text();
-            if (title != " ") {
-                $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
-            }
-        });
-
-        // DataTable
-        var table = $('#example').DataTable();
-
-        // Apply the search
-        table.columns().every(function () {
-            var that = this;
-
-            $('input', this.footer()).on('keyup change', function () {
-                if (that.search() !== this.value) {
-                    that
-                            .search(this.value)
-                            .draw();
-                }
-            });
-        });
-    });
-</script>
 </body>
 
 
