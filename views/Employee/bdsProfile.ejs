@@ -34,7 +34,7 @@
             <li class="navbar-brand">
                 <form action="/logout" method="get">
                     <button id="logout" type="submit" style="margin-top: -3px;" class="btn btn-default"><i
-                                class="fa fa-user" aria-hidden="true"></i> Logout
+                                class="fa fa-user" aria-hidden="true"></i> Đăng Xuất
                     </button>
                 </form>
             </li>
@@ -46,36 +46,38 @@
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
         <li>
-            <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
-                            class="fa fa-home fa-stack-1x "></i></span> Dự Án</a>
-            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                <li><a href="/employee/view-all-bds"><span class="fa-stack fa-lg pull-left"><i
-                                    class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả dự án</a></li>
-                <li><a href="/employee/add-bds"><span class="fa-stack fa-lg pull-left"><i
-                                    class="fa fa-plus fa-stack-1x "></i></span>Thêm dự án</a></li>
-            </ul>
-        </li>
+          <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                          class="fa fa-home fa-stack-1x "></i></span> Dự Án</a>
+          <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+              <li><a href="/employee/view-all-bds"><span class="fa-stack fa-lg pull-left"><i
+                                  class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả dự án</a></li>
+              <li><a href="/employee/add-bds"><span class="fa-stack fa-lg pull-left"><i
+                                  class="fa fa-plus fa-stack-1x "></i></span>Thêm dự án</a></li>
+          </ul>
+      </li>
+      <li>
+          <a href="#" id="menu3"><span class="fa-stack fa-lg pull-left"><i
+                          class="fa fa-male fa-stack-1x "></i></span> Khách Hàng</a>
+          <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+              <li><a href="/employee/view-all-customer"><span class="fa-stack fa-lg pull-left"><i
+                                  class="fa fa-eye fa-stack-1x "></i></span>Xem tất cả khách hàng</a></li>
+              <li><a href="/employee/add-customer"><span class="fa-stack fa-lg pull-left"><i
+                                  class="fa fa-plus fa-stack-1x "></i></span>Thêm khách hàng</a></li>
+          </ul>
+      </li>
 
-        <li>
-            <a href="/employee/applied-leaves"><span class="fa-stack fa-lg pull-left"><i
-                            class="fa fa-dashboard fa-stack-1x "></i></span> Xem đơn xin nghỉ</a>
-        </li>
-        <li>
-            <a href="/employee/apply-for-leave"><span class="fa-stack fa-lg pull-left"><i
-                            class="fa fa-envelope-square fa-stack-1x "></i></span>Tạo đơn xin nghỉ</a>
-        </li>
-        <!-- <li data-toggle="modal" data-target="#myModal">
-            <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-list-ol fa-stack-1x "></i></span>View
-                Attendance</a>
-        </li>
-        <li data-toggle="modal" data-target="#myModal2">
-            <a href="#"><span class="fa-stack fa-lg pull-left"><i
-                            class="fa fa-check-circle fa-stack-1x "></i></span>Mark Attendance</a>
-        </li> -->
-        <li>
-            <a href="/employee/view-profile"><span class="fa-stack fa-lg pull-left"><i
-                            class="fa fa-user fa-stack-1x "></i></span>Trang cá nhân</a>
-        </li>
+      <li>
+          <a href="/employee/applied-leaves"><span class="fa-stack fa-lg pull-left"><i
+                          class="fa fa-dashboard fa-stack-1x "></i></span> Xem đơn xin nghỉ</a>
+      </li>
+      <li>
+          <a href="/employee/apply-for-leave"><span class="fa-stack fa-lg pull-left"><i
+                          class="fa fa-envelope-square fa-stack-1x "></i></span>Tạo đơn xin nghỉ</a>
+      </li>
+      <li>
+          <a href="/employee/view-profile"><span class="fa-stack fa-lg pull-left"><i
+                          class="fa fa-user fa-stack-1x "></i></span>Trang cá nhân</a>
+      </li>
     </ul>
     </div><!-- /#sidebar-wrapper -->
     <!-- Page Content -->
@@ -427,6 +429,8 @@
                                <span class="sr-only">Next</span> 
                             </a>
                           </div>
+                          <br>
+                          <button type="button" onclick="history.go(-1);" class="btn btn-default" style="float: right;">Trở về</button>
                     </div>
                 </div>
             </div>

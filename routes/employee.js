@@ -9,6 +9,7 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 var moment = require('moment');
 var Bds = require('../models/bds');
+const Customer = require('../models/customer');
 var config_passport = require('../config/passport.js');
 
 ////////
@@ -142,7 +143,113 @@ router.get('/edit-bds/:id', function editbds(req, res, next) {
 
 });
 ////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+router.get('/view-all-customer', function viewAllCustomer(req, res, next) {
+    var customerChunks = [];
+    //find is asynchronous function
+    Customer.find({}).sort({_id: -1}).exec(function getCustomers(err, docs) {
+        for (var i = 0; i < docs.length; i++) {
+            customerChunks.push(docs[i]);
+        }
+        res.render('Employee/viewAllcustomer', {
+            title: 'Tất cả khách hàng',
+            // //csrfToken: req.csrfToken(),Token: req.//csrfToken: req.csrfToken(),Token(),
+            customers: customerChunks,
+            userName: req.session.user.name
+        });
+    });
+});
 
+router.get('/add-customer', function addCustomer(req, res, next) {
+    res.render('Employee/addCustomer', {
+        title: 'Add Customer',
+        userName: req.session.user.name
+    });
+
+});
+
+router.post('/add-customer', function addCustomer(req, res) {
+    var newCustomer = new Customer();
+    newCustomer.hovaten = req.body.hovaten;
+    newCustomer.sodienthoai = req.body.sodienthoai;
+    newCustomer.diachi = req.body.diachi;
+    newCustomer.nhomkhachhang = req.body.nhomkhachhang;
+    newCustomer.ghichu = req.body.ghichu;
+       
+    newCustomer.save(function saveCustomer(err) {
+        if (err) {
+            console.log(err);
+        }
+        res.redirect('/Employee/view-all-customer');
+    });
+});
+router.post('/delete-customer/:id', function deleteCustomer(req, res) {
+    var id = req.params.id;
+    Customer.findByIdAndRemove({_id: id}, function deleteBds(err) {
+        if (err) {
+            console.log('unable to delete customer');
+        }
+        else {
+            res.redirect('/Employee/view-all-customer');
+        }
+    });
+});
+
+router.get('/edit-customer/:id', function editCustomer(req, res, next) {
+    var customerId = req.params.id;
+    Customer.findById(customerId, function getCustomer(err, customer) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('Employee/editCustomer', {
+            title: 'Edit Customer',
+            customer: customer,
+            moment: moment,
+            message: '',
+            userName: req.session.user.name
+        });
+    });
+});
+
+router.post('/edit-customer/:id', function editCustomer(req, res) {
+    var customerId = req.params.id;
+    Customer.findById(customerId, function (err, customer) {
+        if (err) {
+            console.log(err);
+        }
+        customer.hovaten = req.body.hovaten;
+        customer.sodienthoai = req.body.sodienthoai;
+        customer.diachi = req.body.diachi;
+        customer.nhomkhachhang = req.body.nhomkhachhang;
+        customer.ghichu = req.body.ghichu;
+        customer.save(function saveProject(err) {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect('/Employee/view-all-customer');
+
+        });
+    });
+
+});
+
+router.get('/customer-profile/:id', function getCustomerProfile(req, res, next) {
+    var customerId = req.params.id;
+    Customer.findById(customerId, function getCustomer(err, customer) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('Employee/customerProfile', {
+            title: 'Customer Profile',
+            customers: customer,
+            moment: moment,
+            userName: req.session.user.name
+        });
+
+    });
+});
+
+///////////////////////////////////////////////////////////////////
 
 
 router.get('/applied-leaves', function viewAppliedLeaves(req, res, next) {

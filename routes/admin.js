@@ -192,6 +192,7 @@ router.post('/add-customer', function addCustomer(req, res) {
     newCustomer.hovaten = req.body.hovaten;
     newCustomer.sodienthoai = req.body.sodienthoai;
     newCustomer.diachi = req.body.diachi;
+    newCustomer.nhomkhachhang = req.body.nhomkhachhang;
     newCustomer.ghichu = req.body.ghichu;
        
     newCustomer.save(function saveCustomer(err) {
@@ -205,7 +206,7 @@ router.post('/delete-customer/:id', function deleteCustomer(req, res) {
     var id = req.params.id;
     Customer.findByIdAndRemove({_id: id}, function deleteBds(err) {
         if (err) {
-            console.log('unable to delete bds');
+            console.log('unable to delete customer');
         }
         else {
             res.redirect('/admin/view-all-customer');
@@ -221,7 +222,7 @@ router.get('/edit-customer/:id', function editCustomer(req, res, next) {
         }
         res.render('Admin/editCustomer', {
             title: 'Edit Customer',
-            project: customer,
+            customer: customer,
             moment: moment,
             message: '',
             userName: req.session.user.name
@@ -231,7 +232,6 @@ router.get('/edit-customer/:id', function editCustomer(req, res, next) {
 
 router.post('/edit-customer/:id', function editCustomer(req, res) {
     var customerId = req.params.id;
-    var newCustomer = new Customer();
     Customer.findById(customerId, function (err, customer) {
         if (err) {
             console.log(err);
@@ -239,6 +239,7 @@ router.post('/edit-customer/:id', function editCustomer(req, res) {
         customer.hovaten = req.body.hovaten;
         customer.sodienthoai = req.body.sodienthoai;
         customer.diachi = req.body.diachi;
+        customer.nhomkhachhang = req.body.nhomkhachhang;
         customer.ghichu = req.body.ghichu;
         customer.save(function saveProject(err) {
             if (err) {
@@ -249,6 +250,22 @@ router.post('/edit-customer/:id', function editCustomer(req, res) {
         });
     });
 
+});
+
+router.get('/customer-profile/:id', function getCustomerProfile(req, res, next) {
+    var customerId = req.params.id;
+    Customer.findById(customerId, function getCustomer(err, customer) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('Admin/customerProfile', {
+            title: 'Customer Profile',
+            customers: customer,
+            moment: moment,
+            userName: req.session.user.name
+        });
+
+    });
 });
 
 ///////////////////////////////////////////////////////////////////

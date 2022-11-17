@@ -5,6 +5,7 @@ var CustomerSchema = new Schema({
     hovaten: {type: String, required: true},
     sodienthoai: {type: String, required: true},
     diachi: {type: String, required: true},
+    nhomkhachhang: {type: String, required: true},
     ghichu: {type: String, required: true}
 });
 
