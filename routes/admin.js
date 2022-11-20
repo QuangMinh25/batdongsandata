@@ -76,12 +76,12 @@ let storage = multer.diskStorage({
         callback(null, file.originalname);
     }
 });
-let maxSize = 1000000 * 1000;
+// let maxSize = 1000000 * 1000;
 var upload = multer({
     storage: storage,
-    limits: {
-        fileSize: maxSize
-    }
+    // limits: {
+    //     fileSize: maxSize
+    // }
 });
 
 /////////////////////////////////////////////////////////////////
