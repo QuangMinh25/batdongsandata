@@ -164,6 +164,12 @@
                                 <input type="text" required="required" class="form-control" id="lienhe" name="lienhe"
                                 value="<%= bdss.lienhe %>">
                             </div>
+                            <div class="image-container">
+                                <% for (var i = 0; i < bdss.multiple_image.length; i++) { %>
+                                  <img src="<%= bdss.multiple_image[i] %>">
+                                <% } %>
+                            </div>
+                            <br>
                             <div class="form-group">
                                 <label for="multiple_image"><i class="fa fa-file-image-o" aria-hidden="true"></i> Hình ảnh:</label>
                                 <input type="file" name="multiple_image" accept='image/*' multiple required="required" id="multiple_image" >

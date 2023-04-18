@@ -160,3 +160,15 @@ tfoot input {
   font-size: small;
   box-sizing: border-box;
 }
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* Hiển thị 4 hình trên một hàng */
+  grid-gap: 10px; /* Khoảng cách giữa các hình */
+}
+
+.image-container img {
+  width: 100px;
+  height: 100px;
+}
+
